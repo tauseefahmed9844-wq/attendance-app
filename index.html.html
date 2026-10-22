@@ -1,0 +1,3187 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاضری، تدریسی دن و ایکسل رپورٹنگ سسٹم - تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)</title>
+    <style>
+        :root {
+            --primary: #0b3d2c;
+            --primary-dark: #051f16;
+            --primary-light: #165b43;
+            --accent: #d4af37;
+            --secondary-bg: #e8f5e9;
+            --bg-gradient: linear-gradient(135deg, #072218 0%, #134e38 50%, #0b3d2c 100%);
+            --panel-border: #0b3d2c;
+            --ui-font-size: 16px;
+            --poster-font-scale: 1;
+            --logo-border-width: 4px;
+            --logo-border-color: #d4af37;
+            --logo-radius: 50%;
+            --logo-size: 85px;
+        }
+
+        /* 8 English Color Themes */
+        body.theme-darkgreen {
+            --primary: #0b3d2c; --primary-dark: #051f16; --primary-light: #145942; --accent: #d4af37;
+            --secondary-bg: #e6f4ea; --panel-border: #0b3d2c;
+            --bg-gradient: linear-gradient(135deg, #062016 0%, #124d37 50%, #093022 100%);
+        }
+        body.theme-royalblue {
+            --primary: #0d47a1; --primary-dark: #062659; --primary-light: #1976d2; --accent: #ffca28;
+            --secondary-bg: #e3f2fd; --panel-border: #0d47a1;
+            --bg-gradient: linear-gradient(135deg, #061f4a 0%, #0d47a1 50%, #1565c0 100%);
+        }
+        body.theme-goldorange {
+            --primary: #b23c00; --primary-dark: #6b2300; --primary-light: #e65100; --accent: #ffd54f;
+            --secondary-bg: #fff3e0; --panel-border: #b23c00;
+            --bg-gradient: linear-gradient(135deg, #4a1800 0%, #993300 50%, #bf4000 100%);
+        }
+        body.theme-chocolate {
+            --primary: #3e2723; --primary-dark: #1f1311; --primary-light: #5d4037; --accent: #ffb300;
+            --secondary-bg: #efebe9; --panel-border: #3e2723;
+            --bg-gradient: linear-gradient(135deg, #211412 0%, #4e342e 50%, #3e2723 100%);
+        }
+        body.theme-silvergrey {
+            --primary: #263238; --primary-dark: #11171a; --primary-light: #455a64; --accent: #26c6da;
+            --secondary-bg: #eceff1; --panel-border: #263238;
+            --bg-gradient: linear-gradient(135deg, #151c20 0%, #37474f 50%, #263238 100%);
+        }
+        body.theme-emerald {
+            --primary: #005b4f; --primary-dark: #00332c; --primary-light: #00897b; --accent: #ffd740;
+            --secondary-bg: #e0f2f1; --panel-border: #005b4f;
+            --bg-gradient: linear-gradient(135deg, #002b24 0%, #00695c 50%, #004d40 100%);
+        }
+        body.theme-purple {
+            --primary: #4a148c; --primary-dark: #27094d; --primary-light: #6a1b9a; --accent: #ffd740;
+            --secondary-bg: #f3e5f5; --panel-border: #4a148c;
+            --bg-gradient: linear-gradient(135deg, #240847 0%, #4a148c 50%, #6a1b9a 100%);
+        }
+        body.theme-maroon {
+            --primary: #6a0b37; --primary-dark: #3d051f; --primary-light: #ad1457; --accent: #ffca28;
+            --secondary-bg: #fce4ec; --panel-border: #6a0b37;
+            --bg-gradient: linear-gradient(135deg, #36041b 0%, #7b0d40 50%, #56082c 100%);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Jameel Noori Nastaleeq', 'Nafees Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 15px;
+            color: #1e293b;
+            font-size: var(--ui-font-size);
+            min-height: 100vh;
+        }
+
+        .app-shell {
+            max-width: 1520px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border: 3px solid var(--accent);
+            outline: 4px solid var(--primary-dark);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .control-ribbon {
+            background: #f8fafc;
+            border: 2px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ribbon-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            background: #ffffff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .ribbon-label {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 13px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        .theme-btn {
+            padding: 5px 9px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-weight: 700;
+            color: #fff;
+            transition: all 0.2s;
+        }
+        .theme-btn:hover, .theme-btn.active-theme {
+            transform: translateY(-2px);
+            border-color: #ffffff;
+            outline: 2px solid #1e293b;
+        }
+
+        .school-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+            border: 3px solid var(--accent);
+            border-radius: 14px;
+            padding: 15px 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logo-box-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-frame {
+            width: var(--logo-size);
+            height: var(--logo-size);
+            border: var(--logo-border-width) solid var(--logo-border-color);
+            border-radius: var(--logo-radius);
+            background: #ffffff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .header-titles h1 {
+            margin: 0 0 5px 0;
+            font-size: calc(var(--ui-font-size) + 14px);
+            color: #ffffff;
+        }
+        .header-titles p {
+            margin: 2px 0;
+            font-size: calc(var(--ui-font-size) + 1px);
+            color: #fef08a;
+            font-weight: bold;
+        }
+
+        /* Main Navigation Bar (4 Modules) */
+        .main-nav-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+            background: #e2e8f0;
+            padding: 8px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+        }
+        @media (max-width: 900px) {
+            .main-nav-tabs { grid-template-columns: 1fr 1fr; }
+        }
+        .nav-tab-btn {
+            padding: 12px 14px;
+            border: 2px solid transparent;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #1e293b;
+            font-family: inherit;
+            font-size: calc(var(--ui-font-size) + 1px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+        }
+        .nav-tab-btn:hover {
+            border-color: var(--primary);
+            background: var(--secondary-bg);
+        }
+        .nav-tab-btn.active-nav {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            border-color: var(--accent);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+
+        .module-view {
+            display: none;
+        }
+        .module-view.active-view {
+            display: block;
+        }
+
+        /* Studio Drawer */
+        .studio-drawer {
+            background: #fffbeb;
+            border: 2px dashed #d97706;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            display: none;
+            gap: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .studio-drawer.open { display: flex; }
+
+        /* Workspace for Tab 1 */
+        .workspace {
+            display: grid;
+            grid-template-columns: 270px 1fr 490px;
+            gap: 18px;
+            align-items: start;
+        }
+        @media (max-width: 1220px) {
+            .workspace { grid-template-columns: 250px 1fr; }
+            .preview-window { grid-column: 1 / -1; }
+        }
+        @media (max-width: 768px) {
+            .workspace { grid-template-columns: 1fr; }
+            .school-header { flex-direction: column; text-align: center; }
+            .header-brand { flex-direction: column; }
+        }
+
+        .window-panel {
+            background: #ffffff;
+            border: 2.5px solid var(--panel-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .window-titlebar {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: calc(var(--ui-font-size) + 2px);
+            border-bottom: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .window-body { padding: 14px; }
+
+        .btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: var(--ui-font-size);
+            font-weight: bold;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn:hover { background: var(--primary-dark); }
+        .btn-gold { background: #d97706; color: #fff; }
+        .btn-green { background: #15803d; color: #fff; }
+        .btn-blue { background: #0369a1; color: #fff; }
+        .btn-red { background: #b91c1c; color: #fff; }
+        .btn-sm {
+            padding: 4px 10px;
+            font-size: calc(var(--ui-font-size) - 2px);
+        }
+
+        .mode-switch-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: #e2e8f0;
+            padding: 5px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border: 1.5px solid #cbd5e1;
+        }
+        .mode-tab {
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: calc(var(--ui-font-size) - 1px);
+            font-weight: bold;
+            background: transparent;
+            color: #334155;
+            transition: all 0.2s;
+        }
+        .mode-tab.active-mode {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        input[type="text"], input[type="date"], input[type="month"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1.5px solid #94a3b8;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: var(--ui-font-size);
+            background: #fff;
+        }
+
+        .class-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-top: 12px;
+            max-height: 460px;
+            overflow-y: auto;
+        }
+
+        .class-item {
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .class-item:hover {
+            border-color: var(--primary);
+            background: var(--secondary-bg);
+        }
+        .class-item.active {
+            background: var(--secondary-bg);
+            border: 2px solid var(--primary);
+            border-right: 6px solid var(--primary);
+            color: var(--primary-dark);
+        }
+        .class-count-badge {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-size: 11px;
+            font-family: sans-serif;
+        }
+        .class-abs-badge {
+            background: #dc2626;
+            color: #fff;
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-size: 11px;
+            font-family: sans-serif;
+        }
+
+        .accumulated-tray {
+            background: #fff5f5;
+            border: 2px solid #f87171;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+        }
+        .accumulated-tray-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #991b1b;
+            margin-bottom: 8px;
+            font-size: calc(var(--ui-font-size) - 1px);
+        }
+        .accumulated-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-height: 110px;
+            overflow-y: auto;
+        }
+        .acc-chip {
+            background: #ffffff;
+            border: 1.5px solid #dc2626;
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: calc(var(--ui-font-size) - 2px);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e293b;
+        }
+        .acc-chip.is-leave {
+            border-color: #d97706;
+            background: #fffbeb;
+        }
+        .acc-chip button {
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0 2px;
+        }
+
+        .student-grid {
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            max-height: 350px;
+            overflow-y: auto;
+            background: #f8fafc;
+            margin: 10px 0;
+        }
+
+        .student-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            background: #fff;
+        }
+        .student-row.is-absent {
+            background: #fef2f2;
+            border-right: 4px solid #dc2626;
+        }
+        .student-row.is-leave {
+            background: #fffbeb;
+            border-right: 4px solid #d97706;
+        }
+
+        .stu-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        .stu-num {
+            width: 26px;
+            height: 26px;
+            background: #e2e8f0;
+            color: #334155;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        .monthly-badge {
+            font-size: 11px;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 7px;
+            border-radius: 12px;
+            border: 1px solid #fca5a5;
+        }
+
+        .status-btns {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1.5px solid #cbd5e1;
+            background: #f8fafc;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: calc(var(--ui-font-size) - 2px);
+            font-weight: bold;
+        }
+        .status-pill.active-present { background: #dcfce7; border-color: #16a34a; color: #15803d; }
+        .status-pill.active-absent { background: #dc2626; border-color: #991b1b; color: #ffffff; }
+        .status-pill.active-leave { background: #d97706; border-color: #92400e; color: #ffffff; }
+
+        /* Live Graphic Poster Preview */
+        .poster-card-wrapper {
+            background: #cbd5e1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px inset #94a3b8;
+            max-height: 540px;
+            overflow-y: auto;
+        }
+
+        .live-poster {
+            background: #ffffff;
+            border: 4px solid var(--primary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .poster-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #ffffff;
+            padding: 15px 12px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .poster-logo {
+            width: calc(var(--logo-size) * 0.85);
+            height: calc(var(--logo-size) * 0.85);
+            border: var(--logo-border-width) solid var(--logo-border-color);
+            border-radius: var(--logo-radius);
+            margin: 0 auto 6px auto;
+            background: #fff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-weight: bold;
+        }
+        .poster-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .poster-school-name {
+            font-size: calc(21px * var(--poster-font-scale));
+            font-weight: bold;
+            margin: 0;
+            color: #ffffff;
+        }
+        .poster-contact {
+            font-size: calc(13px * var(--poster-font-scale));
+            color: #fef08a;
+            margin-top: 3px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            direction: ltr;
+        }
+
+        .poster-meta-strip {
+            background: var(--secondary-bg);
+            border-bottom: 2px solid var(--primary);
+            padding: 7px 12px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: calc(14px * var(--poster-font-scale));
+        }
+
+        .poster-body {
+            padding: 12px;
+            min-height: 170px;
+        }
+
+        .poster-badge-title {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1.5px solid #f87171;
+            padding: 5px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: calc(15px * var(--poster-font-scale));
+        }
+
+        .poster-class-group {
+            margin-bottom: 12px;
+            border: 1.5px solid var(--primary);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        .poster-class-group-header {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 5px 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: calc(14px * var(--poster-font-scale));
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .poster-absent-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            padding: 8px;
+        }
+
+        .poster-student-chip {
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-right: 5px solid #dc2626;
+            border-radius: 6px;
+            padding: 5px 9px;
+            font-weight: bold;
+            font-size: calc(14px * var(--poster-font-scale));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .poster-student-chip.chip-leave {
+            border-right-color: #d97706;
+            background: #fffbeb;
+        }
+
+        .poster-footer {
+            background: var(--primary-dark);
+            color: #ffffff;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: calc(12px * var(--poster-font-scale));
+            border-top: 2px solid var(--accent);
+        }
+
+        /* Analytics & Register Tables */
+        .kpi-cards-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .kpi-card {
+            background: #ffffff;
+            border: 2px solid var(--primary);
+            border-top: 5px solid var(--primary);
+            border-radius: 10px;
+            padding: 12px 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .kpi-card .val {
+            font-size: calc(var(--ui-font-size) + 12px);
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: block;
+        }
+        .kpi-card .title {
+            font-size: var(--ui-font-size);
+            font-weight: bold;
+            color: #475569;
+        }
+
+        .data-table-wrapper {
+            overflow-x: auto;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: #fff;
+            margin-top: 12px;
+        }
+        table.urdu-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Jameel Noori Nastaleeq', 'Nafees Nastaleeq', 'Segoe UI', Tahoma, sans-serif;
+            font-size: calc(var(--ui-font-size) + 1px);
+            direction: rtl;
+            text-align: right;
+        }
+        table.urdu-table th {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        table.urdu-table td {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
+        }
+        table.urdu-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        table.urdu-table tr:hover {
+            background: var(--secondary-bg);
+        }
+
+        .strength-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+            gap: 12px;
+            padding: 15px;
+            background: #f8fafc;
+        }
+        .strength-class-card {
+            background: #ffffff;
+            border: 2px solid #cbd5e1;
+            border-top: 5px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .strength-summary-footer {
+            background: var(--secondary-bg);
+            border-top: 2px solid var(--primary);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-weight: bold;
+            font-size: calc(var(--ui-font-size) + 2px);
+            color: var(--primary-dark);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 15px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-card {
+            background: #fff;
+            border: 3px solid var(--primary);
+            border-radius: 14px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .toast-msg {
+            background: #15803d;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-align: center;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            display: none;
+        }
+    </style>
+</head>
+<body id="appBody" class="theme-darkgreen">
+
+<input type="file" id="logoUploader" accept="image/*" style="display:none;" onchange="handleLogoUpload(event)">
+
+<div class="app-shell">
+
+    <!-- ٹاپ کنٹرول ربن -->
+    <div class="control-ribbon">
+        <div class="ribbon-group">
+            <span class="ribbon-label">🎨 Themes:</span>
+            <button class="theme-btn active-theme" style="background:#0b3d2c;" onclick="setTheme('theme-darkgreen', this)">Dark Green</button>
+            <button class="theme-btn" style="background:#0d47a1;" onclick="setTheme('theme-royalblue', this)">Royal Blue</button>
+            <button class="theme-btn" style="background:#b23c00;" onclick="setTheme('theme-goldorange', this)">Gold Orange</button>
+            <button class="theme-btn" style="background:#3e2723;" onclick="setTheme('theme-chocolate', this)">Chocolate</button>
+            <button class="theme-btn" style="background:#263238;" onclick="setTheme('theme-silvergrey', this)">Silver Grey</button>
+            <button class="theme-btn" style="background:#005b4f;" onclick="setTheme('theme-emerald', this)">Emerald</button>
+            <button class="theme-btn" style="background:#4a148c;" onclick="setTheme('theme-purple', this)">Purple</button>
+            <button class="theme-btn" style="background:#6a0b37;" onclick="setTheme('theme-maroon', this)">Maroon</button>
+        </div>
+
+        <div class="ribbon-group">
+            <span class="ribbon-label">🔍 Font:</span>
+            <button class="btn btn-sm" onclick="adjustAppFont(-1)">A-</button>
+            <span id="fontSizeDisplay" style="font-family:sans-serif; font-weight:bold; font-size:13px;">16px</span>
+            <button class="btn btn-sm" onclick="adjustAppFont(1)">A+</button>
+            <span class="ribbon-label" style="margin-right:4px;">پوسٹر فونٹ:</span>
+            <input type="range" min="0.85" max="1.35" step="0.05" value="1" style="width:65px;" oninput="adjustPosterFont(this.value)">
+        </div>
+
+        <div class="ribbon-group">
+            <span class="ribbon-label">✨ Quality:</span>
+            <select id="imageQualitySelect" style="width:auto; padding:3px 8px; font-size:12px; font-family:sans-serif; font-weight:bold;">
+                <option value="2">Full HD (2x)</option>
+                <option value="3" selected>Ultra HD 4K (3x Sharp)</option>
+                <option value="4">Print 300-DPI (4x Max)</option>
+            </select>
+        </div>
+
+        <div class="ribbon-group">
+            <button class="btn btn-gold btn-sm" onclick="document.getElementById('logoUploader').click()">📸 لوگو اپلوڈ</button>
+            <button class="btn btn-sm" onclick="toggleStudioDrawer()">⚙️ لوگو بارڈر</button>
+            <button class="btn btn-blue btn-sm" onclick="exportCSV()">📤 Export CSV</button>
+            <label class="btn btn-sm" style="margin:0; cursor:pointer; background:#334155;">
+                📥 Import CSV <input type="file" accept=".csv" style="display:none;" onchange="importCSV(event)">
+            </label>
+        </div>
+    </div>
+
+    <!-- لوگو اور بارڈر کسٹمائزیشن ڈراور -->
+    <div class="studio-drawer" id="studioDrawer">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-gold btn-sm" onclick="document.getElementById('logoUploader').click()">
+                📁 کمپیوٹر سے نیا لوگو منتخب کریں
+            </button>
+            <button class="btn btn-red btn-sm" onclick="removeLogo()">🗑️ لوگو ہٹائیں</button>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-size:14px; font-weight:bold;">
+            <label>لوگو بارڈر موٹائی:
+                <input type="range" min="0" max="10" value="4" style="width:70px;" oninput="updateLogoStyle('borderWidth', this.value + 'px')">
+            </label>
+            <label>بارڈر کلر:
+                <input type="color" value="#d4af37" onchange="updateLogoStyle('borderColor', this.value)" style="width:35px; height:28px; padding:0; border:none; cursor:pointer;">
+            </label>
+            <label>لوگو شیپ:
+                <select style="width:auto; padding:3px 8px;" onchange="updateLogoStyle('radius', this.value)">
+                    <option value="50%">گول (Circle)</option>
+                    <option value="14px">چوکور (Rounded Box)</option>
+                    <option value="0px">مکمل چوکور (Square)</option>
+                </select>
+            </label>
+            <label>لوگو سائز:
+                <input type="range" min="60" max="115" value="85" style="width:70px;" oninput="updateLogoStyle('size', this.value + 'px')">
+            </label>
+        </div>
+    </div>
+
+    <!-- ہیڈر بینر -->
+    <div class="school-header">
+        <div class="header-brand">
+            <div class="logo-box-wrapper">
+                <div class="logo-frame" onclick="document.getElementById('logoUploader').click()" title="لوگو لگانے کے لیے یہاں کلک کریں">
+                    <span id="headerLogoText">تقویٰ</span>
+                    <img id="headerLogoImg" style="display:none;" alt="Logo">
+                </div>
+                <button class="btn btn-gold btn-sm" style="font-size:11px; padding:2px 8px;" onclick="document.getElementById('logoUploader').click()">📸 لوگو لگائیں</button>
+            </div>
+            <div class="header-titles">
+                <h1>تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)</h1>
+                <p>📞 واٹس ایپ و کال: 03226389984 | 03466389984</p>
+                <span style="font-size:13px; color:#cbd5e1;">ڈیجیٹل یومیہ حاضری، تاریخ وار تلاش، تدریسی دن اور جمیل نوری نستعلیق ایکسل رپورٹنگ سسٹم</span>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button class="btn btn-gold" onclick="exportFullAnalyticsToExcel()">📥 مکمل ایکسل رپورٹ (جمیل نوری نستعلیق)</button>
+            <button class="btn btn-red btn-sm" onclick="resetToOfficialSchoolList()">🔄 اصل 199 طلباء ری لوڈ کریں</button>
+        </div>
+    </div>
+
+    <!-- 4 مین ماڈیول ٹیبز -->
+    <div class="main-nav-tabs">
+        <button class="nav-tab-btn active-nav" id="navBtnDaily" onclick="switchMainModule('daily')">
+            📝 ۱. یومیہ حاضری و واٹس ایپ پوسٹر
+        </button>
+        <button class="nav-tab-btn" id="navBtnLookup" onclick="switchMainModule('lookup')">
+            🔍 ۲. کسی بھی تاریخ کا ریکارڈ دیکھیں
+        </button>
+        <button class="nav-tab-btn" id="navBtnAnalytics" onclick="switchMainModule('analytics')">
+            📊 ۳. ماہانہ و سالانہ رجسٹر (تدریسی دن)
+        </button>
+        <button class="nav-tab-btn" id="navBtnStrength" onclick="switchMainModule('strength')">
+            🏫 ۴. کلاس وائز تعداد و اسکول ماڈیول
+        </button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 1: DAILY ATTENDANCE & ULTRA-HD POSTER STUDIO                        -->
+    <!-- ========================================================================= -->
+    <div class="module-view active-view" id="moduleDaily">
+        <div class="workspace">
+
+            <!-- ونڈو 1: سائیڈ بار (کلاسز) -->
+            <div class="window-panel">
+                <div class="window-titlebar">
+                    <span>🏫 اسکول کی کلاسیں</span>
+                    <span id="totalClassesBadge" style="font-size:13px; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:10px;">12</span>
+                </div>
+                <div class="window-body">
+                    <div style="display:flex; gap:6px; margin-bottom:10px;">
+                        <input type="text" id="newClassInput" placeholder="نئی کلاس کا نام..." onkeypress="if(event.key==='Enter') addNewClass()">
+                        <button class="btn btn-gold" onclick="addNewClass()" style="white-space:nowrap;">+ شامل کریں</button>
+                    </div>
+
+                    <div class="class-list" id="classSidebarList"></div>
+
+                    <hr style="border:none; border-top:1px dashed #cbd5e1; margin:12px 0;">
+                    <button class="btn btn-blue" style="width:100%; margin-bottom:6px;" onclick="openBulkModal()">📋 ایکسل سے نام پیسٹ کریں</button>
+                    <button class="btn btn-red btn-sm" style="width:100%;" onclick="clearEntireSchoolToday()">🧹 اس تاریخ کی حاضری ری سیٹ کریں</button>
+                </div>
+            </div>
+
+            <!-- ونڈو 2: طلباء اور حاضری لگانے کا پینل -->
+            <div class="window-panel">
+                <div class="window-titlebar">
+                    <span id="activeClassHeader">📚 کلاس منتخب کریں</span>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <span style="font-size:13px;">📅 تاریخ:</span>
+                        <input type="date" id="attendanceDate" style="width:auto; padding:3px 8px; font-size:13px; font-family:sans-serif;" onchange="onDateChange()">
+                        <button class="btn btn-gold btn-sm" id="btnToggleHolidayToday" onclick="toggleSelectedDateAsHoliday()">🏖️ آج چھٹی مارک کریں</button>
+                    </div>
+                </div>
+                <div class="window-body">
+
+                    <div id="holidayBannerAlert" style="display:none; background:#fef3c7; border:2px solid #d97706; color:#92400e; padding:10px 14px; border-radius:8px; margin-bottom:12px; font-weight:bold; text-align:center;">
+                        🏖️ یہ تاریخ اسکول میں چھٹی (ہفتہ/اتوار یا سرکاری تعطیل) کے طور پر درج ہے۔
+                    </div>
+
+                    <!-- آج کے جمع شدہ غیر حاضر طلباء کی ٹرے -->
+                    <div class="accumulated-tray" id="accumulatedTray">
+                        <div class="accumulated-tray-header">
+                            <span id="accTrayTitle">📥 اس تاریخ کو تمام کلاسز سے جمع شدہ غیر حاضر طلباء (0)</span>
+                            <span style="font-size:12px; color:#475569;">(مختلف کلاسز سے سلیکٹ کردہ بچے یہاں جمع ہوتے ہیں)</span>
+                        </div>
+                        <div class="accumulated-chips" id="accumulatedChipsList"></div>
+                    </div>
+
+                    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+                        <div style="flex:2; display:flex; gap:6px; min-width:220px;">
+                            <input type="text" id="newStudentInput" placeholder="اس کلاس میں نئے طالب علم کا نام لکھیں..." onkeypress="if(event.key==='Enter') addStudent()">
+                            <button class="btn btn-green" onclick="addStudent()" style="white-space:nowrap;">+ بچہ ایڈ کریں</button>
+                        </div>
+                        <div style="flex:1; min-width:150px;">
+                            <input type="text" id="searchStudentInput" placeholder="🔍 طالب علم تلاش کریں..." oninput="renderStudents()">
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#f1f5f9; padding:8px 12px; border-radius:8px;">
+                        <span style="font-size:14px; font-weight:bold; color:var(--primary);">💡 بچے کے نام پر کلک کر کے غیر حاضر یا رخصت مارک کریں:</span>
+                        <div style="display:flex; gap:6px;">
+                            <button class="btn btn-sm" onclick="markAllPresent()">✅ اس کلاس کو سب حاضر کریں</button>
+                        </div>
+                    </div>
+
+                    <div class="student-grid" id="studentsContainer"></div>
+
+                    <div style="margin-top:10px;">
+                        <label style="font-weight:bold; font-size:14px; color:var(--primary); display:block; margin-bottom:4px;">📝 پوسٹر کے نیچے خصوصی ہدایت / نوٹ:</label>
+                        <input type="text" id="customFooterNote" value="نوٹ: بچے کی غیر حاضری کی صورت میں والدین فوری طور پر اسکول آفس مطلع فرمائیں۔" oninput="updateLivePoster()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ونڈو 3: لائیو گرافک پوسٹر پریویو -->
+            <div class="window-panel preview-window">
+                <div class="window-titlebar">
+                    <span>🖼️ لائیو کارڈ و رپورٹ پریویو</span>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <label style="font-size:12px; font-weight:normal; display:flex; align-items:center; gap:3px; cursor:pointer;">
+                            <input type="checkbox" id="showClassStrengthOnPoster" checked onchange="updateLivePoster()"> کلاس تعداد دکھائیں
+                        </label>
+                        <label style="font-size:12px; font-weight:normal; display:flex; align-items:center; gap:3px; cursor:pointer;">
+                            <input type="checkbox" id="showMonthlyCountToggle" checked onchange="updateLivePoster()"> ماہانہ چھٹیاں
+                        </label>
+                    </div>
+                </div>
+                <div class="window-body">
+
+                    <div class="mode-switch-bar">
+                        <button class="mode-tab active-mode" id="tabCombinedSchool" onclick="setReportMode('combined')">
+                            🏫 تمام کلاسز کی اکٹھی (کلاس وائز) رپورٹ
+                        </button>
+                        <button class="mode-tab" id="tabSingleClass" onclick="setReportMode('single')">
+                            📚 صرف منتخب کلاس کی الگ رپورٹ
+                        </button>
+                    </div>
+
+                    <div class="poster-card-wrapper">
+                        <div class="live-poster" id="livePosterDOM">
+                            <div class="poster-header">
+                                <div class="poster-logo" onclick="document.getElementById('logoUploader').click()" style="cursor:pointer;" title="لوگو تبدیل کرنے کے لیے کلک کریں">
+                                    <span id="posterLogoText">تقویٰ</span>
+                                    <img id="posterLogoImg" style="display:none;" alt="Logo">
+                                </div>
+                                <h2 class="poster-school-name">تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)</h2>
+                                <div class="poster-contact">📞 03226389984 | 03466389984</div>
+                            </div>
+
+                            <div class="poster-meta-strip">
+                                <span id="posterClassText">کلاس وائز حاضری رپورٹ</span>
+                                <span id="posterDateText">مورخہ: -</span>
+                            </div>
+
+                            <div class="poster-body">
+                                <div class="poster-badge-title" id="posterStatusHeading">📢 آج غیر حاضر اور رخصت پر موجود طلباء</div>
+                                <div id="posterDynamicContent"></div>
+                            </div>
+
+                            <div class="poster-footer" id="posterFooterText">
+                                نوٹ: بچے کی غیر حاضری کی صورت میں والدین فوری طور پر اسکول آفس مطلع فرمائیں۔
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:12px;">
+                        <button class="btn btn-green" onclick="downloadPosterPNG()">
+                            📥 الٹرا ایچ ڈی (4K) تصویر ڈاؤن لوڈ
+                        </button>
+                        <button class="btn btn-blue" onclick="copyPosterImageToClipboard()">
+                            📸 تصویر کاپی کریں (Ctrl+V)
+                        </button>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:8px;">
+                        <button class="btn btn-gold" onclick="copyWhatsAppText()">
+                            📋 واٹس ایپ میسج کاپی کریں
+                        </button>
+                        <button class="btn" style="background:#475569;" onclick="downloadAllClassesSeparatePNGs()">
+                            📦 ہر کلاس کے الگ کارڈز نکالیں
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 2: PAST DATE RECORD LOOKUP (کسی بھی تاریخ کا ریکارڈ چیک کریں)       -->
+    <!-- ========================================================================= -->
+    <div class="module-view" id="moduleLookup">
+        <div class="window-panel">
+            <div class="window-titlebar">
+                <span>🔍 کسی بھی پچھلی تاریخ کا مکمل حاضری ریکارڈ چیک کریں (مثلاً 30 تاریخ یا کوئی بھی دن)</span>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-gold btn-sm" onclick="exportLookupDateToExcel()">📥 اس تاریخ کا ریکارڈ ایکسل (جمیل نوری نستعلیق) میں نکالیں</button>
+                    <button class="btn btn-green btn-sm" onclick="loadLookupDateIntoPosterStudio()">🖼️ اس تاریخ کا پوسٹر بنائیں</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <!-- فلٹر بار برائے تاریخ اور کلاس -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; background:#f1f5f9; padding:14px; border-radius:10px; border:1.5px solid #cbd5e1; margin-bottom:16px;">
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:5px;">📅 تاریخ منتخب کریں (جس دن کا ریکارڈ دیکھنا ہے):</label>
+                        <input type="date" id="lookupDateInput" onchange="renderPastDateLookup()">
+                    </div>
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:5px;">📚 کلاس منتخب کریں:</label>
+                        <select id="lookupClassFilter" onchange="renderPastDateLookup()">
+                            <option value="ALL">🏫 تمام کلاسز (پورا اسکول)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:5px;">📌 محفوظ شدہ تواریخ (جن دنوں کی غیرحاضری درج ہے):</label>
+                        <select id="savedDatesQuickSelect" onchange="if(this.value){document.getElementById('lookupDateInput').value=this.value; renderPastDateLookup();}">
+                            <option value="">-- محفوظ شدہ تاریخ منتخب کریں --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- منتخب تاریخ کے خلاصہ کارڈز -->
+                <div class="kpi-cards-row" id="lookupSummaryCards"></div>
+
+                <!-- منتخب تاریخ کی کلاس وائز اور طالب علم وار تفصیل -->
+                <div class="data-table-wrapper">
+                    <table class="urdu-table" id="lookupTableDOM">
+                        <thead>
+                            <tr>
+                                <th>نمبر شمار</th>
+                                <th>کلاس کا نام</th>
+                                <th>کلاس کے کل طلباء</th>
+                                <th>حاضر طلباء</th>
+                                <th>غیر حاضر / رخصت کی تعداد</th>
+                                <th>چھٹی پر موجود بچوں کے نام (غیر حاضر / رخصت)</th>
+                                <th>ایکشن</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lookupTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 3: MONTHLY & YEARLY ANALYTICS, TEACHING DAYS & EXCEL REGISTER      -->
+    <!-- ========================================================================= -->
+    <div class="module-view" id="moduleAnalytics">
+        <div class="window-panel">
+            <div class="window-titlebar">
+                <span>📊 ماہانہ و سالانہ حاضری رجسٹر، ہفتہ/اتوار کی چھٹیاں اور کل تدریسی دن (Teaching Days)</span>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-gold btn-sm" onclick="exportFullAnalyticsToExcel()">📥 مکمل رجسٹر ایکسل (جمیل نوری نستعلیق) میں ڈاؤن لوڈ کریں</button>
+                </div>
+            </div>
+            <div class="window-body">
+
+                <!-- فلٹر اور سیٹنگز بار -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap:12px; background:#f8fafc; padding:14px; border-radius:10px; border:2px solid var(--primary); margin-bottom:16px;">
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">📈 رپورٹ کی قسم (ماہانہ / سالانہ):</label>
+                        <select id="analyticsPeriodType" onchange="onAnalyticsFilterChange()">
+                            <option value="monthly" selected>📅 ماہانہ رپورٹ (Monthly)</option>
+                            <option value="yearly">🗓️ سالانہ رپورٹ (Yearly)</option>
+                        </select>
+                    </div>
+
+                    <div id="monthPickerWrap">
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">📅 مہینہ منتخب کریں:</label>
+                        <input type="month" id="analyticsMonthInput" onchange="renderAnalyticsModule()">
+                    </div>
+
+                    <div id="yearPickerWrap" style="display:none;">
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">🗓️ سال منتخب کریں:</label>
+                        <input type="number" id="analyticsYearInput" min="2020" max="2035" value="2026" onchange="renderAnalyticsModule()">
+                    </div>
+
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">📚 کلاس منتخب کریں:</label>
+                        <select id="analyticsClassSelect" onchange="renderAnalyticsModule()">
+                            <option value="ALL">🏫 تمام کلاسز (مکمل اسکول)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">🏖️ ہفتہ وار چھٹی کا اصول:</label>
+                        <select id="weekendRuleSelect" onchange="saveHolidayConfig(); renderAnalyticsModule();">
+                            <option value="sat_sun" selected>ہفتہ اور اتوار دونوں چھٹی</option>
+                            <option value="sun_only">صرف اتوار چھٹی (ہفتہ آن)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight:bold; display:block; margin-bottom:4px;">⏳ دنوں کے حساب کا دائرہ:</label>
+                        <select id="dayCountRangeMode" onchange="renderAnalyticsModule()">
+                            <option value="full_period" selected>مکمل مہینے / سال کے کل دن</option>
+                            <option value="up_to_today">صرف آج کی تاریخ تک کے دن</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- اضافی سرکاری یا ہنگامی چھٹیاں شامل کرنے کی بار -->
+                <div style="background:#fffbeb; border:1.5px solid #f59e0b; border-radius:10px; padding:10px 14px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <span style="font-weight:bold; color:#92400e;">🏖️ ہفتہ/اتوار کے علاوہ اضافی سرکاری یا موسمی چھٹی شامل کریں:</span>
+                        <input type="date" id="customHolidayDateInput" style="width:auto; padding:4px 8px; font-family:sans-serif;">
+                        <input type="text" id="customHolidayReasonInput" placeholder="چھٹی کی وجہ (مثلاً عید، یومِ اقبال، بارش)..." style="width:230px; padding:4px 8px;">
+                        <button class="btn btn-gold btn-sm" onclick="addCustomHoliday()">+ چھٹی شامل کریں</button>
+                    </div>
+                    <div id="customHolidaysChips" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+                </div>
+
+                <!-- کل دن، ہفتہ/اتوار چھٹیاں، اور تدریسی دنوں کے کارڈز -->
+                <div class="kpi-cards-row" id="analyticsKpiRow"></div>
+
+                <!-- حصہ اول: کلاس وائز خلاصہ ٹیبل -->
+                <h3 style="margin:18px 0 8px 0; color:var(--primary); border-bottom:2px solid var(--primary); padding-bottom:6px;">
+                    🏫 ۱. کلاس وائز تدریسی دن اور حاضری کا خلاصہ
+                </h3>
+                <div class="data-table-wrapper">
+                    <table class="urdu-table" id="classSummaryTableDOM">
+                        <thead>
+                            <tr>
+                                <th>نمبر شمار</th>
+                                <th>کلاس کا نام</th>
+                                <th>کلاس کے کل طلباء</th>
+                                <th>کل کیلنڈر دن</th>
+                                <th>ہفتہ و اتوار کی چھٹیاں</th>
+                                <th>اضافی سرکاری چھٹیاں</th>
+                                <th>کل تدریسی دن (اسکول لگا)</th>
+                                <th>مجموعی غیر حاضریاں</th>
+                                <th>اوسط حاضری فیصد</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classSummaryTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- حصہ دوم: طالب علم وار تفصیلی حاضری رجسٹر -->
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin:22px 0 8px 0; border-bottom:2px solid var(--primary); padding-bottom:6px;">
+                    <h3 style="margin:0; color:var(--primary);">
+                        👨‍🎓 ۲. طالب علم وار مکمل حاضری رجسٹر (کون سا بچہ کتنے دن اسکول آیا اور کتنے دن غیر حاضر رہا)
+                    </h3>
+                    <input type="text" id="analyticsStudentSearch" placeholder="🔍 رجسٹر میں بچے کا نام تلاش کریں..." style="width:260px; padding:5px 10px;" oninput="renderAnalyticsModule()">
+                </div>
+
+                <div class="data-table-wrapper" style="max-height:520px; overflow-y:auto;">
+                    <table class="urdu-table" id="studentRegisterTableDOM">
+                        <thead>
+                            <tr>
+                                <th>نمبر شمار</th>
+                                <th>طالب علم کا نام</th>
+                                <th>کلاس</th>
+                                <th>کل تدریسی دن (اسکول لگا)</th>
+                                <th>ہفتہ/اتوار و دیگر چھٹیاں</th>
+                                <th style="background:#15803d;">جتنے دن بچہ اسکول آیا (حاضر دن)</th>
+                                <th style="background:#b91c1c;">غیر حاضر دن (Absent)</th>
+                                <th style="background:#d97706;">رخصت کے دن (Leave)</th>
+                                <th>غیر حاضری کی تواریخ</th>
+                                <th>حاضری فیصد (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentRegisterTableBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODULE 4: SCHOOL STRENGTH & CLASS-WISE MODULE                             -->
+    <!-- ========================================================================= -->
+    <div class="module-view" id="moduleStrength">
+        <div class="window-panel">
+            <div class="window-titlebar">
+                <span>🏫 اسکول اعداد و شمار اور کلاس وائز طلباء ماڈیول (پلے گروپ تا دہم)</span>
+                <button class="btn btn-gold btn-sm" onclick="exportFullAnalyticsToExcel()">📥 ایکسل شیٹ (جمیل نوری نستعلیق) ڈاؤن لوڈ کریں</button>
+            </div>
+            <div class="strength-grid-cards" id="strengthCardsGrid"></div>
+            <div class="strength-summary-footer" id="strengthSummaryFooter"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ہائی ریزولوشن کینوس -->
+<canvas id="hdPosterCanvas" style="display:none;"></canvas>
+
+<!-- موڈل: ایکسل بلک پیسٹ -->
+<div class="modal-overlay" id="bulkModal">
+    <div class="modal-card">
+        <div class="window-titlebar">
+            <span>📋 ایکسل شیٹ سے بچوں کے نام شامل کریں</span>
+            <button class="btn btn-red btn-sm" onclick="closeBulkModal()">✕ بند کریں</button>
+        </div>
+        <div class="window-body">
+            <label style="font-weight:bold; display:block; margin-bottom:6px;">کس کلاس میں شامل کرنے ہیں؟</label>
+            <select id="bulkTargetClass" style="margin-bottom:12px;"></select>
+            <textarea id="bulkNamesTextarea" rows="8" placeholder="یہاں نام پیسٹ کریں (ہر لائن میں ایک نام)..."></textarea>
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:12px;">
+                <button class="btn btn-green" onclick="processBulkPaste()">✅ تمام نام شامل کریں</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast-msg" id="actionToast">کامیابی سے مکمل ہو گیا!</div>
+
+<script>
+    // آپ کی ورڈ فائل کے تمام 12 کلاسز اور 199 طلباء کا مکمل ڈیٹا بیس
+    const officialSchoolList = {
+        "پلے گروپ": [
+            "محمد علی مقصود", "حسین بن امیر", "ایزم فیصل", "اریب قیصر", "نیشا امانت", "حرم عارف", "عثمان فاروق", "بلال محمود",
+            "حرم آصف", "یغور شاہد", "محمد علی ذوالفقار", "ایمان جمیل", "موسیٰ شہزاد", "محمد کبیر سیف", "ہانیہ فاروق", "ایزم شہباز",
+            "لاریب شوکت", "حیدر کرامت", "عبدالھادی", "عنمتہ ناظم", "طلحہ افتخار", "سعد شبیر", "کیس قیصر", "سبحان ندیم",
+            "امن عباس", "فاریہ نذیر", "اذان امجد", "زویا شان", "ابراہیم الطاف", "ارحہ بشارت", "عنایہ فریاد", "ایمان طاہر",
+            "ابیحہ بابر", "حامد طاہر", "حرم فاطمہ عظیم", "زینب عرفان", "ریحان وسیم", "خدیجہ صدام", "حسنین تنویر", "عثمان منیر",
+            "ہانیہ شہزادی لیاقت", "عبدالوہاب تنویر", "اشعل عباس", "سبحان اشرف", "طیب ارشد", "فاطمہ ارشد", "دعا سلیم", "ابراہیم سرفراز"
+        ],
+        "نرسری": [
+            "حورعین جہانگیر", "حرم فاطمہ آصف", "خدیجہ آصف", "نورِ حرم غلام جیلانی", "نورِ حرم اعجاز", "محمد بن امیر",
+            "سبحان وسیم", "عجوہ فریاد", "حرم عمران", "ایان عامر", "سائرہ نعیم", "اذان اللہ وسایہ",
+            "فیضان اللہ و سایہ", "منہا ارشد", "زرغام شاہد", "دعا زہرا سیف", "ہادیہ حفیظ", "دلاور سعید",
+            "اُم ہانیہ مصطفیٰ", "عون نفیس", "حسن شوکت", "فضا منیر", "عمر شبیر", "سبحان تنویر"
+        ],
+        "پریپ": [
+            "حجاب زہرا", "حاشر افتخار", "عبداللہ افتخار", "احمد جاوید", "ابوبکر نوید", "عزیر شوکت", "عبداللہ شہزاد",
+            "عبدالھادی مظہر", "نواز شہباز", "عاصم قاسم", "فاطمہ عامر", "حرم بابر", "مصطفیٰ عرفان", "ماہم اللہ وسایا",
+            "حرم حفیظ", "حرم عمران", "ابوبکر نذیر", "مناہل ناظم", "مستقیم جمیل", "معصوم فاطمہ", "مناہل صدام"
+        ],
+        "اول": [
+            "مریم منیر", "صفاء عابد", "ماہم حفیظ", "مہرا لنساء بوٹا", "فیضہ طارق", "علیزہ سعید", "رمضان بشارت",
+            "محمد علی وسیم", "عبدالہادی اشرف", "ابرار شہزاد", "فیضان خلیل", "سبحا ن حفیظ", "طیب صدام", "ابو بکر احسان", "حسن ارشد"
+        ],
+        "دوم": [
+            "نور منیر", "عشال امیر علی", "ادیبہ شفیق", "ہادیہ شہزاد", "تانیہ نذیر", "زینب نفیس", "ثانیہ صفدر",
+            "زین امجد", "حیدر شکیل", "عرشمان افتخار", "شہر یار عابد", "احمد جمیل", "احمد عرفان", "احمد ارشد",
+            "علی حنان", "سفیا ن لیاقت", "علی رضا جمیل", "علی رضا سعید", "امان تنویر"
+        ],
+        "سوم": [
+            "عروج ناصر", "اقصی شکیل", "سویرا عباس", "سحر عابد", "ہمنہ عابد", "نور امیر علی", "زمان امجد",
+            "مجاہد اعظم", "حیدر مشتاق", "عمیر لیاقت", "عابد فاروق", "علی حمزہ سلیم", "ابو بکر عمران"
+        ],
+        "چہارم": [
+            "عائزہ امیر علی", "ندا جاوید", "دالیہ جاوید", "فجر حفیظ", "نور مشتاق", "ایمان وسیم", "وجیہہ نسیم عباس",
+            "ایمان جمیل", "ثمرہ ناظم", "اریان لیاقت", "محمد علی حسنین یوسف", "ابو بکر اشرف", "ثقلین سعید", "رضوان شہباز",
+            "ثقلین امین", "فجر آصف", "احد شفیق", "احمد مشتاق", "بلال محمود", "عبداللہ انور"
+        ],
+        "پنجم": [
+            "زینب عبدالغنی", "ہانیہ قیصر", "مبشرہ محمود", "طیبہ اشرف", "مریم طارق", "میرب انور", "حامد امیر علی", "حسنین زبیر", "زبیر لیاقت"
+        ],
+        "ششم": [
+            "منیبہ اسلم", "نور نوید", "جنت فریاد", "علیزہ جمیل", "فائزہ کرامت", "بسمہ ناظم", "نور صفدر", "نور سلیم", "احمد نفیس", "غلام حسین طارق"
+        ],
+        "ہفتم": [
+            "عائشہ ناصر", "ایمان شکیل", "عائشہ محمود", "لائبہ اشرف", "میری قیصر", "زینب طارق", "احمد نوید", "حسنین مشتاق", "زین جمیل", "خزامہ اشرف"
+        ],
+        "نہم": [
+            "مدیحہ حسین یوسف", "اریبہ بابر", "نصباح لیاقت", "منیب منیر", "امان قیصر", "عبداللہ ندیم"
+        ],
+        "دہم": [
+            "شہزاد ناصر", "شا ہ میر غلام حسین", "مریم صفدر", "مریم اکرم"
+        ]
+    };
+
+    const dummySampleNames = new Set([
+        "محمد احمد", "عائشہ بی بی", "علی حیدر", "فاطمہ نور", "عبداللہ",
+        "ابراہیم", "محمد ابراہیم", "حلیمہ سعدیہ", "عمر فاروق", "زینب سجاد", "حبیب اللہ", "مریم نواز",
+        "محمد قاسم", "خدیجہ الکبریٰ", "عثمان غنی", "ام کلثوم", "عبد الرحمن", "عبدالرحمن",
+        "سعد بن عبادہ", "عائشہ صدیقہ", "طلحہ بن زبیر", "طلحہ زبیر", "جویریا", "بلال احمد",
+        "حمزہ بن عبدالمطلب", "حمزہ علی", "فاطمہ الزہرا", "حسن علی", "حسن رضا", "حسین علی", "سفوان"
+    ]);
+
+    const classNameMap = {
+        "پلے گروپ (Play Group)": "پلے گروپ",
+        "نرسری (Nursery)": "نرسری",
+        "پریپ (Prep)": "پریپ",
+        "کلاس اول (Class 1)": "اول",
+        "کلاس دوم (Class 2)": "دوم",
+        "کلاس سوم (Class 3)": "سوم"
+    };
+
+    function loadAndMergeAllPreviousData() {
+        let merged = JSON.parse(JSON.stringify(officialSchoolList));
+        const previousKeys = [
+            'taqwa_school_data', 'taqwa_school_data_v2', 'taqwa_school_data_v3',
+            'taqwa_school_data_v4', 'taqwa_pro_classes', 'taqwa_official_db_v1',
+            'taqwa_official_db_v2', 'taqwa_master_merged_db'
+        ];
+
+        previousKeys.forEach(key => {
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return;
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed !== 'object') return;
+
+                for (let oldClass in parsed) {
+                    const targetClass = classNameMap[oldClass] || oldClass;
+                    if (!merged[targetClass]) merged[targetClass] = [];
+                    const list = Array.isArray(parsed[oldClass]) ? parsed[oldClass] : [];
+                    list.forEach(stu => {
+                        const cleanName = (stu || '').trim();
+                        if (!cleanName) return;
+                        if (!dummySampleNames.has(cleanName) && !merged[targetClass].includes(cleanName)) {
+                            merged[targetClass].push(cleanName);
+                        }
+                    });
+                }
+            } catch (e) {}
+        });
+
+        try {
+            localStorage.setItem('taqwa_master_merged_db', JSON.stringify(merged));
+        } catch (e) {}
+        return merged;
+    }
+
+    let schoolData = loadAndMergeAllPreviousData();
+    let attendanceHistory = JSON.parse(localStorage.getItem('taqwa_pro_history') || '{}');
+
+    // کسٹم سرکاری چھٹیاں اور ہفتہ وار چھٹیوں کی سیٹنگ
+    let holidayConfig = JSON.parse(localStorage.getItem('taqwa_holiday_cfg') || 'null') || {
+        weekendRule: 'sat_sun', // 'sat_sun' | 'sun_only'
+        customHolidays: {} // { "2026-10-28": "سرکاری تعطیل" }
+    };
+
+    let logoSettings = JSON.parse(localStorage.getItem('taqwa_pro_logo_cfg') || 'null') || {
+        base64: localStorage.getItem('taqwa_school_logo') || '',
+        borderWidth: '4px',
+        borderColor: '#d4af37',
+        radius: '50%',
+        size: '85px'
+    };
+
+    let activeClass = Object.keys(schoolData)[0] || null;
+    let currentAttendance = {};
+    let reportMode = 'combined';
+    let currentUiFontSize = 16;
+    let currentPosterScale = 1;
+
+    const todayISO = new Date().toISOString().split('T')[0];
+    document.getElementById('attendanceDate').value = todayISO;
+    document.getElementById('lookupDateInput').value = todayISO;
+    document.getElementById('analyticsMonthInput').value = todayISO.slice(0, 7);
+    document.getElementById('analyticsYearInput').value = todayISO.slice(0, 4);
+    document.getElementById('weekendRuleSelect').value = holidayConfig.weekendRule || 'sat_sun';
+
+    function getSelectedDateKey() {
+        return document.getElementById('attendanceDate').value || todayISO;
+    }
+
+    function saveAllData() {
+        try {
+            localStorage.setItem('taqwa_master_merged_db', JSON.stringify(schoolData));
+            localStorage.setItem('taqwa_pro_history', JSON.stringify(attendanceHistory));
+            localStorage.setItem('taqwa_pro_logo_cfg', JSON.stringify(logoSettings));
+            localStorage.setItem('taqwa_holiday_cfg', JSON.stringify(holidayConfig));
+            if (logoSettings.base64) {
+                localStorage.setItem('taqwa_school_logo', logoSettings.base64);
+            }
+        } catch (e) {
+            console.warn("Storage quota warning:", e);
+        }
+    }
+
+    function saveHolidayConfig() {
+        holidayConfig.weekendRule = document.getElementById('weekendRuleSelect').value;
+        saveAllData();
+    }
+
+    // 4 مین ماڈیولز کے درمیان سوئچ کرنے کا فنکشن
+    function switchMainModule(modName) {
+        syncActiveClassToHistory();
+        document.querySelectorAll('.module-view').forEach(v => v.classList.remove('active-view'));
+        document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active-nav'));
+
+        if (modName === 'daily') {
+            document.getElementById('moduleDaily').classList.add('active-view');
+            document.getElementById('navBtnDaily').classList.add('active-nav');
+            selectClass(activeClass || Object.keys(schoolData)[0]);
+        } else if (modName === 'lookup') {
+            document.getElementById('moduleLookup').classList.add('active-view');
+            document.getElementById('navBtnLookup').classList.add('active-nav');
+            populateClassDropdowns();
+            renderPastDateLookup();
+        } else if (modName === 'analytics') {
+            document.getElementById('moduleAnalytics').classList.add('active-view');
+            document.getElementById('navBtnAnalytics').classList.add('active-nav');
+            populateClassDropdowns();
+            renderAnalyticsModule();
+        } else if (modName === 'strength') {
+            document.getElementById('moduleStrength').classList.add('active-view');
+            document.getElementById('navBtnStrength').classList.add('active-nav');
+            renderStrengthModule();
+        }
+    }
+
+    function populateClassDropdowns() {
+        const lookupSel = document.getElementById('lookupClassFilter');
+        const anaSel = document.getElementById('analyticsClassSelect');
+        const curLookup = lookupSel.value || 'ALL';
+        const curAna = anaSel.value || 'ALL';
+
+        lookupSel.innerHTML = '<option value="ALL">🏫 تمام کلاسز (پورا اسکول)</option>';
+        anaSel.innerHTML = '<option value="ALL">🏫 تمام کلاسز (مکمل اسکول)</option>';
+
+        Object.keys(schoolData).forEach(cName => {
+            const o1 = document.createElement('option');
+            o1.value = cName;
+            o1.innerText = `📚 کلاس ${cName} (${schoolData[cName].length} طلباء)`;
+            lookupSel.appendChild(o1);
+
+            const o2 = document.createElement('option');
+            o2.value = cName;
+            o2.innerText = `📚 کلاس ${cName} (${schoolData[cName].length} طلباء)`;
+            anaSel.appendChild(o2);
+        });
+
+        lookupSel.value = curLookup;
+        anaSel.value = curAna;
+
+        // محفوظ شدہ تواریخ ڈراپ ڈاؤن اپڈیٹ کریں
+        const savedSel = document.getElementById('savedDatesQuickSelect');
+        savedSel.innerHTML = '<option value="">-- ریکارڈ شدہ تواریخ دیکھیں --</option>';
+        const dates = Object.keys(attendanceHistory).sort().reverse();
+        dates.forEach(d => {
+            let absTotal = 0;
+            for (let c in attendanceHistory[d]) {
+                absTotal += Object.keys(attendanceHistory[d][c]).length;
+            }
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.innerText = `📅 ${d} (کل غیر حاضر: ${absTotal})`;
+            savedSel.appendChild(opt);
+        });
+    }
+
+    // چیک کریں کہ کوئی تاریخ ہفتہ، اتوار یا سرکاری چھٹی تو نہیں
+    function checkDateHolidayStatus(dateISO) {
+        const d = new Date(dateISO + 'T00:00:00');
+        const dayOfWeek = d.getDay(); // 0 = Sunday, 6 = Saturday
+        const rule = holidayConfig.weekendRule || 'sat_sun';
+
+        if (holidayConfig.customHolidays && holidayConfig.customHolidays[dateISO]) {
+            return { isHoliday: true, type: 'custom', reason: holidayConfig.customHolidays[dateISO] };
+        }
+        if (dayOfWeek === 0) {
+            return { isHoliday: true, type: 'weekend', reason: 'اتوار کی ہفتہ وار چھٹی' };
+        }
+        if (rule === 'sat_sun' && dayOfWeek === 6) {
+            return { isHoliday: true, type: 'weekend', reason: 'ہفتہ کی ہفتہ وار چھٹی' };
+        }
+        return { isHoliday: false, type: 'working', reason: 'تدریسی دن (اسکول آن)' };
+    }
+
+    function toggleSelectedDateAsHoliday() {
+        const dateKey = getSelectedDateKey();
+        if (!holidayConfig.customHolidays) holidayConfig.customHolidays = {};
+
+        if (holidayConfig.customHolidays[dateKey]) {
+            delete holidayConfig.customHolidays[dateKey];
+            showToast(`مورخہ ${dateKey} کو واپس عام تدریسی دن بنا دیا گیا۔`);
+        } else {
+            const reason = prompt("اس تاریخ کی چھٹی کی وجہ درج کریں (مثلاً سرکاری چھٹی، بارش، عید وغیرہ):", "سرکاری / اسکول چھٹی");
+            if (reason === null) return;
+            holidayConfig.customHolidays[dateKey] = reason.trim() || "اسکول چھٹی";
+            showToast(`مورخہ ${dateKey} کو چھٹی کے طور پر محفوظ کر لیا گیا!`);
+        }
+        saveAllData();
+        updateHolidayAlertBanner();
+    }
+
+    function updateHolidayAlertBanner() {
+        const dateKey = getSelectedDateKey();
+        const st = checkDateHolidayStatus(dateKey);
+        const banner = document.getElementById('holidayBannerAlert');
+        const btn = document.getElementById('btnToggleHolidayToday');
+
+        if (st.isHoliday) {
+            banner.style.display = 'block';
+            banner.innerText = `🏖️ مطلع رہیں: مورخہ ${dateKey} کو "${st.reason}" ہے (یہ دن غیر تدریسی چھٹی میں شمار ہوگا)۔`;
+        } else {
+            banner.style.display = 'none';
+        }
+
+        if (holidayConfig.customHolidays && holidayConfig.customHolidays[dateKey]) {
+            btn.innerText = '✅ چھٹی ختم کریں (اسکول آن)';
+            btn.className = 'btn btn-green btn-sm';
+        } else {
+            btn.innerText = '🏖️ اس دن چھٹی مارک کریں';
+            btn.className = 'btn btn-gold btn-sm';
+        }
+    }
+
+    // ============================================================================
+    // MODULE 2 FUNCTIONS: PAST DATE LOOKUP (کسی بھی تاریخ کا ریکارڈ دیکھنا)
+    // ============================================================================
+    function renderPastDateLookup() {
+        const lookupDate = document.getElementById('lookupDateInput').value || todayISO;
+        const classFilter = document.getElementById('lookupClassFilter').value || 'ALL';
+        const dayStatus = checkDateHolidayStatus(lookupDate);
+        const urduDateStr = new Date(lookupDate + 'T00:00:00').toLocaleDateString('ur-PK', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const dayRec = (lookupDate === getSelectedDateKey())
+            ? (() => { syncActiveClassToHistory(); return attendanceHistory[lookupDate] || {}; })()
+            : (attendanceHistory[lookupDate] || {});
+
+        let totalStudentsScope = 0;
+        let totalAbsentScope = 0;
+        let totalLeaveScope = 0;
+
+        const tbody = document.getElementById('lookupTableBody');
+        tbody.innerHTML = '';
+
+        const classesList = classFilter === 'ALL' ? Object.keys(schoolData) : [classFilter];
+
+        classesList.forEach((cName, idx) => {
+            const stuList = schoolData[cName] || [];
+            const cTotal = stuList.length;
+            const cAtt = dayRec[cName] || {};
+            const entries = Object.entries(cAtt);
+
+            let cAbs = 0;
+            let cLeave = 0;
+            const formattedNames = entries.map(([n, st]) => {
+                if (st === 'leave') { cLeave++; return `${n} (رخصت)`; }
+                cAbs++;
+                return `${n} (غیرحاضر)`;
+            });
+
+            const cPresent = dayStatus.isHoliday ? 0 : Math.max(0, cTotal - entries.length);
+            totalStudentsScope += cTotal;
+            totalAbsentScope += cAbs;
+            totalLeaveScope += cLeave;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-weight:bold; text-align:center;">${idx + 1}</td>
+                <td style="font-weight:bold; color:var(--primary);">📚 ${cName}</td>
+                <td style="font-weight:bold; text-align:center;">${cTotal}</td>
+                <td style="font-weight:bold; color:#15803d; text-align:center;">${dayStatus.isHoliday ? 'چھٹی' : cPresent}</td>
+                <td style="font-weight:bold; color:${entries.length > 0 ? '#dc2626' : '#64748b'}; text-align:center;">
+                    ${entries.length} ${entries.length > 0 ? `(غیرحاضر: ${cAbs}، رخصت: ${cLeave})` : ''}
+                </td>
+                <td style="font-weight:bold; color:${entries.length > 0 ? '#991b1b' : '#15803d'};">
+                    ${entries.length > 0 ? formattedNames.join(' ، ') : (dayStatus.isHoliday ? `🏖️ ${dayStatus.reason}` : '✨ تمام طلباء حاضر تھے')}
+                </td>
+                <td style="text-align:center;">
+                    <button class="btn btn-sm" onclick="openDateAndClassInStudio('${lookupDate}', '${cName}')">✏️ ترمیم / پوسٹر</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const totalOff = totalAbsentScope + totalLeaveScope;
+        const totalPresentScope = dayStatus.isHoliday ? 0 : Math.max(0, totalStudentsScope - totalOff);
+
+        const cardsContainer = document.getElementById('lookupSummaryCards');
+        cardsContainer.innerHTML = `
+            <div class="kpi-card">
+                <span class="val" style="font-size:18px; font-family:inherit;">${urduDateStr}</span>
+                <span class="title">📅 منتخب کردہ تاریخ (${dayStatus.reason})</span>
+            </div>
+            <div class="kpi-card">
+                <span class="val">${totalStudentsScope}</span>
+                <span class="title">👨‍🎓 کل طلباء (${classFilter === 'ALL' ? 'تمام کلاسز' : classFilter})</span>
+            </div>
+            <div class="kpi-card" style="border-top-color:#15803d;">
+                <span class="val" style="color:#15803d;">${dayStatus.isHoliday ? 'چھٹی' : totalPresentScope}</span>
+                <span class="title">✅ اس دن حاضر طلباء</span>
+            </div>
+            <div class="kpi-card" style="border-top-color:#dc2626;">
+                <span class="val" style="color:#dc2626;">${totalOff}</span>
+                <span class="title">❌ چھٹی پر موجود طلباء (غیرحاضر: ${totalAbsentScope} | رخصت: ${totalLeaveScope})</span>
+            </div>
+        `;
+    }
+
+    function openDateAndClassInStudio(dateISO, className) {
+        document.getElementById('attendanceDate').value = dateISO;
+        activeClass = className;
+        switchMainModule('daily');
+        selectClass(className);
+        showToast(`مورخہ ${dateISO} (کلاس ${className}) لوڈ ہو گئی!`);
+    }
+
+    function loadLookupDateIntoPosterStudio() {
+        const lookupDate = document.getElementById('lookupDateInput').value || todayISO;
+        document.getElementById('attendanceDate').value = lookupDate;
+        switchMainModule('daily');
+        onDateChange();
+        showToast(`مورخہ ${lookupDate} کا مکمل ریکارڈ پوسٹر اسٹوڈیو میں کھل گیا!`);
+    }
+
+    // ============================================================================
+    // MODULE 3 FUNCTIONS: TEACHING DAYS, WEEKENDS & MONTHLY/YEARLY REGISTER
+    // ============================================================================
+    function onAnalyticsFilterChange() {
+        const pType = document.getElementById('analyticsPeriodType').value;
+        document.getElementById('monthPickerWrap').style.display = pType === 'monthly' ? 'block' : 'none';
+        document.getElementById('yearPickerWrap').style.display = pType === 'yearly' ? 'block' : 'none';
+        renderAnalyticsModule();
+    }
+
+    function addCustomHoliday() {
+        const dInput = document.getElementById('customHolidayDateInput');
+        const rInput = document.getElementById('customHolidayReasonInput');
+        const dVal = dInput.value;
+        if (!dVal) { alert("پہلے چھٹی کی تاریخ منتخب کریں۔"); return; }
+        const reason = rInput.value.trim() || "سرکاری تعطیل";
+        if (!holidayConfig.customHolidays) holidayConfig.customHolidays = {};
+        holidayConfig.customHolidays[dVal] = reason;
+        saveAllData();
+        rInput.value = '';
+        renderAnalyticsModule();
+        showToast(`مورخہ ${dVal} (${reason}) کو چھٹیوں میں شامل کر لیا گیا!`);
+    }
+
+    function removeCustomHoliday(dateISO) {
+        if (holidayConfig.customHolidays && holidayConfig.customHolidays[dateISO]) {
+            delete holidayConfig.customHolidays[dateISO];
+            saveAllData();
+            renderAnalyticsModule();
+        }
+    }
+
+    // کسی بھی مہینے یا سال کے کل دن، ہفتہ/اتوار کی چھٹیاں، اور تدریسی دن نکالنے کا فارمولا
+    function calculatePeriodCalendarStats() {
+        const pType = document.getElementById('analyticsPeriodType').value;
+        const rangeMode = document.getElementById('dayCountRangeMode').value;
+        const rule = document.getElementById('weekendRuleSelect').value;
+
+        let startDate, endDate, periodLabel;
+
+        if (pType === 'monthly') {
+            const ym = document.getElementById('analyticsMonthInput').value || todayISO.slice(0, 7);
+            const [y, m] = ym.split('-').map(Number);
+            startDate = new Date(y, m - 1, 1);
+            endDate = new Date(y, m, 0); // مہینے کا آخری دن
+            periodLabel = startDate.toLocaleDateString('ur-PK', { year: 'numeric', month: 'long' });
+        } else {
+            const y = parseInt(document.getElementById('analyticsYearInput').value) || 2026;
+            startDate = new Date(y, 0, 1);
+            endDate = new Date(y, 11, 31);
+            periodLabel = `سال ${y}ء`;
+        }
+
+        const todayObj = new Date(todayISO + 'T00:00:00');
+        if (rangeMode === 'up_to_today' && endDate > todayObj) {
+            endDate = todayObj;
+        }
+
+        let totalCalendarDays = 0;
+        let weekendDays = 0;
+        let saturdaysCount = 0;
+        let sundaysCount = 0;
+        let customHolidayDays = 0;
+        let teachingDaysList = [];
+        let customHolidaysInPeriod = [];
+
+        let cur = new Date(startDate);
+        while (cur <= endDate) {
+            totalCalendarDays++;
+            const yyyy = cur.getFullYear();
+            const mm = String(cur.getMonth() + 1).padStart(2, '0');
+            const dd = String(cur.getDate()).padStart(2, '0');
+            const iso = `${yyyy}-${mm}-${dd}`;
+            const dow = cur.getDay();
+
+            const isSun = (dow === 0);
+            const isSat = (dow === 6 && rule === 'sat_sun');
+
+            if (isSun) sundaysCount++;
+            if (isSat) saturdaysCount++;
+
+            if (isSun || isSat) {
+                weekendDays++;
+            } else if (holidayConfig.customHolidays && holidayConfig.customHolidays[iso]) {
+                customHolidayDays++;
+                customHolidaysInPeriod.push({ date: iso, reason: holidayConfig.customHolidays[iso] });
+            } else {
+                teachingDaysList.push(iso);
+            }
+            cur.setDate(cur.getDate() + 1);
+        }
+
+        const totalHolidays = weekendDays + customHolidayDays;
+        const totalTeachingDays = teachingDaysList.length;
+
+        return {
+            periodLabel,
+            totalCalendarDays,
+            weekendDays,
+            saturdaysCount,
+            sundaysCount,
+            customHolidayDays,
+            totalHolidays,
+            totalTeachingDays,
+            teachingDaysList,
+            customHolidaysInPeriod
+        };
+    }
+
+    function renderAnalyticsModule() {
+        syncActiveClassToHistory();
+        const calStats = calculatePeriodCalendarStats();
+        const selectedClass = document.getElementById('analyticsClassSelect').value || 'ALL';
+        const stuQuery = document.getElementById('analyticsStudentSearch').value.trim();
+
+        // اضافی چھٹیوں کے چپس دکھائیں
+        const chipsBox = document.getElementById('customHolidaysChips');
+        chipsBox.innerHTML = '';
+        calStats.customHolidaysInPeriod.forEach(h => {
+            const sp = document.createElement('span');
+            sp.className = 'acc-chip is-leave';
+            sp.innerHTML = `<span>📅 ${h.date}: ${h.reason}</span> <button onclick="removeCustomHoliday('${h.date}')">✕</button>`;
+            chipsBox.appendChild(sp);
+        });
+
+        // KPI Cards
+        const kpiRow = document.getElementById('analyticsKpiRow');
+        kpiRow.innerHTML = `
+            <div class="kpi-card">
+                <span class="val">${calStats.totalCalendarDays}</span>
+                <span class="title">📅 کل کیلنڈر دن (${calStats.periodLabel})</span>
+            </div>
+            <div class="kpi-card" style="border-top-color:#d97706;">
+                <span class="val" style="color:#d97706;">${calStats.weekendDays}</span>
+                <span class="title">🏖️ ہفتہ و اتوار کی چھٹیاں (ہفتہ: ${calStats.saturdaysCount} | اتوار: ${calStats.sundaysCount})</span>
+            </div>
+            <div class="kpi-card" style="border-top-color:#0369a1;">
+                <span class="val" style="color:#0369a1;">${calStats.customHolidayDays}</span>
+                <span class="title">🎉 اضافی / سرکاری چھٹیاں</span>
+            </div>
+            <div class="kpi-card" style="border-top-color:#15803d; background:#f0fdf4;">
+                <span class="val" style="color:#15803d;">${calStats.totalTeachingDays}</span>
+                <span class="title">🏫 کل تدریسی دن (جتنے دن اسکول لگا)</span>
+            </div>
+        `;
+
+        // 1. Class-Wise Summary Table
+        const classTbody = document.getElementById('classSummaryTableBody');
+        classTbody.innerHTML = '';
+        const classesToRender = selectedClass === 'ALL' ? Object.keys(schoolData) : [selectedClass];
+
+        classesToRender.forEach((cName, cIdx) => {
+            const students = schoolData[cName] || [];
+            const cCount = students.length;
+            let classTotalAbsences = 0;
+
+            calStats.teachingDaysList.forEach(dISO => {
+                const dayC = attendanceHistory[dISO] && attendanceHistory[dISO][cName] ? attendanceHistory[dISO][cName] : {};
+                classTotalAbsences += Object.keys(dayC).length;
+            });
+
+            const totalPossibleStudentDays = cCount * calStats.totalTeachingDays;
+            const totalAttendedStudentDays = Math.max(0, totalPossibleStudentDays - classTotalAbsences);
+            const avgPct = totalPossibleStudentDays > 0 ? Math.round((totalAttendedStudentDays / totalPossibleStudentDays) * 100) : 100;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="text-align:center; font-weight:bold;">${cIdx + 1}</td>
+                <td style="font-weight:bold; color:var(--primary);">📚 ${cName}</td>
+                <td style="text-align:center; font-weight:bold;">${cCount}</td>
+                <td style="text-align:center;">${calStats.totalCalendarDays}</td>
+                <td style="text-align:center; color:#d97706; font-weight:bold;">${calStats.weekendDays}</td>
+                <td style="text-align:center; color:#0369a1; font-weight:bold;">${calStats.customHolidayDays}</td>
+                <td style="text-align:center; color:#15803d; font-weight:bold; background:#f0fdf4;">${calStats.totalTeachingDays} دن</td>
+                <td style="text-align:center; color:#dc2626; font-weight:bold;">${classTotalAbsences}</td>
+                <td style="text-align:center; font-weight:bold;">${avgPct}%</td>
+            `;
+            classTbody.appendChild(tr);
+        });
+
+        // 2. Student-Wise Detailed Register Table
+        const stuTbody = document.getElementById('studentRegisterTableBody');
+        stuTbody.innerHTML = '';
+        let serial = 1;
+
+        classesToRender.forEach(cName => {
+            const students = schoolData[cName] || [];
+            students.forEach(stuName => {
+                if (stuQuery && !stuName.includes(stuQuery)) return;
+
+                let absDays = 0;
+                let leaveDays = 0;
+                let absDatesArr = [];
+
+                calStats.teachingDaysList.forEach(dISO => {
+                    const st = attendanceHistory[dISO] && attendanceHistory[dISO][cName] ? attendanceHistory[dISO][cName][stuName] : null;
+                    if (st === 'absent') {
+                        absDays++;
+                        absDatesArr.push(dISO.slice(5));
+                    } else if (st === 'leave') {
+                        leaveDays++;
+                        absDatesArr.push(dISO.slice(5) + '(ر)');
+                    }
+                });
+
+                const totalOffForStudent = absDays + leaveDays;
+                const attendedDays = Math.max(0, calStats.totalTeachingDays - totalOffForStudent);
+                const stuPct = calStats.totalTeachingDays > 0 ? Math.round((attendedDays / calStats.totalTeachingDays) * 100) : 100;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="text-align:center; font-weight:bold;">${serial++}</td>
+                    <td style="font-weight:bold;">${stuName}</td>
+                    <td style="font-weight:bold; color:var(--primary);">${cName}</td>
+                    <td style="text-align:center; font-weight:bold;">${calStats.totalTeachingDays}</td>
+                    <td style="text-align:center; color:#64748b;">${calStats.totalHolidays}</td>
+                    <td style="text-align:center; font-weight:bold; color:#15803d; background:#f0fdf4;">${attendedDays} دن</td>
+                    <td style="text-align:center; font-weight:bold; color:${absDays > 0 ? '#dc2626' : '#64748b'};">${absDays}</td>
+                    <td style="text-align:center; font-weight:bold; color:${leaveDays > 0 ? '#d97706' : '#64748b'};">${leaveDays}</td>
+                    <td style="font-size:13px; color:#991b1b;">${absDatesArr.length > 0 ? absDatesArr.join('، ') : '—'}</td>
+                    <td style="text-align:center; font-weight:bold; color:${stuPct < 75 ? '#dc2626' : '#15803d'};">${stuPct}%</td>
+                `;
+                stuTbody.appendChild(tr);
+            });
+        });
+    }
+
+    // ============================================================================
+    // JAMEEL NOORI NASTALEEQ EXCEL (.XLS) EXPORT ENGINE
+    // ============================================================================
+    function downloadExcelWithNastaleeq(htmlBodyContent, fileName) {
+        const excelTemplate = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                  xmlns:x="urn:schemas-microsoft-com:office:excel"
+                  xmlns="http://www.w3.org/TR/REC-html40" dir="rtl" lang="ur">
+            <head>
+                <meta charset="UTF-8">
+                <!--[if gte mso 9]>
+                <xml>
+                    <x:ExcelWorkbook>
+                        <x:ExcelWorksheets>
+                            <x:ExcelWorksheet>
+                                <x:Name>تقویٰ اسکول حاضری رپورٹ</x:Name>
+                                <x:WorksheetOptions>
+                                    <x:DisplayRightToLeft/>
+                                </x:WorksheetOptions>
+                            </x:ExcelWorksheet>
+                        </x:ExcelWorksheets>
+                    </x:ExcelWorkbook>
+                </xml>
+                <![endif]-->
+                <style>
+                    body, table, th, td, h1, h2, h3, p {
+                        font-family: 'Jameel Noori Nastaleeq', 'Nafees Nastaleeq', 'Calibri', sans-serif;
+                        direction: rtl;
+                        text-align: right;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin-bottom: 20px;
+                    }
+                    th {
+                        background-color: #0b3d2c;
+                        color: #ffffff;
+                        font-size: 15pt;
+                        font-weight: bold;
+                        border: 1px solid #000000;
+                        padding: 8px;
+                        text-align: center;
+                    }
+                    td {
+                        font-size: 14pt;
+                        border: 1px solid #333333;
+                        padding: 6px 10px;
+                    }
+                    .title-banner {
+                        background-color: #0b3d2c;
+                        color: #ffffff;
+                        font-size: 22pt;
+                        font-weight: bold;
+                        text-align: center;
+                        padding: 12px;
+                    }
+                    .sub-banner {
+                        background-color: #e6f4ea;
+                        color: #051f16;
+                        font-size: 15pt;
+                        font-weight: bold;
+                        text-align: center;
+                        padding: 8px;
+                    }
+                </style>
+            </head>
+            <body>
+                ${htmlBodyContent}
+            </body>
+            </html>
+        `;
+
+        const blob = new Blob(['\uFEFF' + excelTemplate], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function exportLookupDateToExcel() {
+        const lookupDate = document.getElementById('lookupDateInput').value || todayISO;
+        renderPastDateLookup();
+        const tableHTML = document.getElementById('lookupTableDOM').outerHTML;
+
+        const content = `
+            <table>
+                <tr><td colspan="7" class="title-banner">تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)</td></tr>
+                <tr><td colspan="7" class="sub-banner">یومیہ تاریخ وار حاضری رپورٹ — مورخہ: ${lookupDate} | رابطہ: 03226389984 - 03466389984</td></tr>
+            </table>
+            ${tableHTML}
+        `;
+        downloadExcelWithNastaleeq(content, `Taqwa_Date_Report_${lookupDate}.xls`);
+        showToast("منتخب تاریخ کی ایکسل شیٹ (جمیل نوری نستعلیق فونٹ کے ساتھ) ڈاؤن لوڈ ہو گئی!");
+    }
+
+    function exportFullAnalyticsToExcel() {
+        renderAnalyticsModule();
+        const calStats = calculatePeriodCalendarStats();
+        const classTableHTML = document.getElementById('classSummaryTableDOM').outerHTML;
+        const stuTableHTML = document.getElementById('studentRegisterTableDOM').outerHTML;
+
+        const content = `
+            <table>
+                <tr><td colspan="10" class="title-banner">تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)</td></tr>
+                <tr><td colspan="10" class="sub-banner">مکمل حاضری رجسٹر اور تدریسی دنوں کی رپورٹ (${calStats.periodLabel}) | رابطہ: 03226389984 - 03466389984</td></tr>
+                <tr>
+                    <td colspan="2"><b>کل کیلنڈر دن:</b> ${calStats.totalCalendarDays}</td>
+                    <td colspan="3"><b>ہفتہ و اتوار کی چھٹیاں:</b> ${calStats.weekendDays} (ہفتہ: ${calStats.saturdaysCount}، اتوار: ${calStats.sundaysCount})</td>
+                    <td colspan="2"><b>اضافی سرکاری چھٹیاں:</b> ${calStats.customHolidayDays}</td>
+                    <td colspan="3" style="background:#dcfce7;"><b>کل تدریسی دن (اسکول لگا):</b> ${calStats.totalTeachingDays} دن</td>
+                </tr>
+            </table>
+            <h2>۱. کلاس وائز حاضری اور تدریسی دنوں کا خلاصہ</h2>
+            ${classTableHTML}
+            <h2>۲. طالب علم وار تفصیلی حاضری رجسٹر</h2>
+            ${stuTableHTML}
+        `;
+        downloadExcelWithNastaleeq(content, `Taqwa_Attendance_Register_${calStats.periodLabel}.xls`);
+        showToast("مکمل ایکسل رجسٹر (جمیل نوری نستعلیق فونٹ میں) ڈاؤن لوڈ ہو گیا!");
+    }
+
+    // ============================================================================
+    // MODULE 4 & CORE DAILY FUNCTIONS
+    // ============================================================================
+    function renderStrengthModule() {
+        const gridEl = document.getElementById('strengthCardsGrid');
+        const footerEl = document.getElementById('strengthSummaryFooter');
+        if (!gridEl || !footerEl) return;
+
+        gridEl.innerHTML = '';
+        let schoolTotalStudents = 0;
+        let schoolTotalPresent = 0;
+        let schoolTotalAbsent = 0;
+        let totalClassesCount = 0;
+
+        for (let cName in schoolData) {
+            totalClassesCount++;
+            const stuList = schoolData[cName] || [];
+            const cTotal = stuList.length;
+            const attObj = getClassAttendanceForToday(cName);
+            const cAbsent = Object.keys(attObj).length;
+            const cPresent = Math.max(0, cTotal - cAbsent);
+
+            schoolTotalStudents += cTotal;
+            schoolTotalPresent += cPresent;
+            schoolTotalAbsent += cAbsent;
+
+            const card = document.createElement('div');
+            card.className = 'strength-class-card';
+            card.onclick = () => { switchMainModule('daily'); selectClass(cName); };
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #cbd5e1; padding-bottom:5px; margin-bottom:6px;">
+                    <span style="font-weight:bold; color:var(--primary); font-size:17px;">📚 ${cName}</span>
+                    <span style="background:var(--primary); color:#fff; padding:2px 8px; border-radius:12px; font-size:12px; font-family:sans-serif; font-weight:bold;">کل: ${cTotal}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:bold;">
+                    <span style="color:#15803d;">✅ حاضر: ${cPresent}</span>
+                    <span style="color:${cAbsent > 0 ? '#dc2626' : '#64748b'};">❌ غیر حاضر: ${cAbsent}</span>
+                </div>
+            `;
+            gridEl.appendChild(card);
+        }
+
+        const pct = schoolTotalStudents > 0 ? Math.round((schoolTotalPresent / schoolTotalStudents) * 100) : 100;
+        footerEl.innerHTML = `
+            <span>🏫 کل کلاسز: ${totalClassesCount}</span>
+            <span>👨‍🎓 پورے اسکول کے کل طلباء: ${schoolTotalStudents}</span>
+            <span style="color:#15803d;">✅ آج مجموعی حاضر: ${schoolTotalPresent}</span>
+            <span style="color:#dc2626;">❌ آج مجموعی غیر حاضر/رخصت: ${schoolTotalAbsent}</span>
+            <span>📈 اسکول حاضری اوسط: ${pct}%</span>
+        `;
+    }
+
+    function syncActiveClassToHistory() {
+        if (!activeClass) return;
+        const dateKey = getSelectedDateKey();
+        if (!attendanceHistory[dateKey]) attendanceHistory[dateKey] = {};
+        if (Object.keys(currentAttendance).length > 0) {
+            attendanceHistory[dateKey][activeClass] = { ...currentAttendance };
+        } else {
+            delete attendanceHistory[dateKey][activeClass];
+        }
+        saveAllData();
+    }
+
+    function getClassAttendanceForToday(className) {
+        const dateKey = getSelectedDateKey();
+        if (className === activeClass) return currentAttendance;
+        return (attendanceHistory[dateKey] && attendanceHistory[dateKey][className]) ? attendanceHistory[dateKey][className] : {};
+    }
+
+    function setReportMode(mode) {
+        reportMode = mode;
+        document.getElementById('tabSingleClass').classList.toggle('active-mode', mode === 'single');
+        document.getElementById('tabCombinedSchool').classList.toggle('active-mode', mode === 'combined');
+        updateLivePoster();
+    }
+
+    function resetToOfficialSchoolList() {
+        if (confirm("کیا آپ واقعی فائل کے تمام 12 کلاسز اور 199 طلباء کی فہرست کو ری فریش کرنا چاہتے ہیں؟")) {
+            schoolData = loadAndMergeAllPreviousData();
+            saveAllData();
+            activeClass = Object.keys(schoolData)[0];
+            selectClass(activeClass);
+            showToast("تمام 12 کلاسز اور 199 طلباء کے نام کامیابی سے لوڈ ہو گئے!");
+        }
+    }
+
+    function clearEntireSchoolToday() {
+        const dateKey = getSelectedDateKey();
+        if (confirm(`کیا آپ مورخہ ${dateKey} کی تمام کلاسز کی غیر حاضری ری سیٹ (سب حاضر) کرنا چاہتے ہیں؟`)) {
+            delete attendanceHistory[dateKey];
+            currentAttendance = {};
+            saveAllData();
+            renderSidebar();
+            renderStudents();
+            renderAccumulatedTray();
+            updateLivePoster();
+            showToast("اس تاریخ کی تمام کلاسز کی حاضری ری سیٹ کر دی گئی!");
+        }
+    }
+
+    function renderAccumulatedTray() {
+        const listEl = document.getElementById('accumulatedChipsList');
+        const titleEl = document.getElementById('accTrayTitle');
+        listEl.innerHTML = '';
+
+        let totalCollected = 0;
+        for (let cName in schoolData) {
+            const attObj = getClassAttendanceForToday(cName);
+            for (let stuName in attObj) {
+                totalCollected++;
+                const stType = attObj[stuName];
+                const chip = document.createElement('div');
+                chip.className = 'acc-chip' + (stType === 'leave' ? ' is-leave' : '');
+                chip.innerHTML = `
+                    <span>[${cName}] ${stuName} (${stType === 'leave' ? 'رخصت' : 'غیرحاضر'})</span>
+                    <button title="واپس حاضر کریں" onclick="removeStudentFromTray('${cName}', '${stuName}')">✕</button>
+                `;
+                listEl.appendChild(chip);
+            }
+        }
+
+        titleEl.innerText = `📥 اس تاریخ کو تمام کلاسز سے جمع شدہ غیر حاضر طلباء (${totalCollected})`;
+        if (totalCollected === 0) {
+            listEl.innerHTML = '<span style="font-size:13px; color:#64748b;">ابھی تک کسی کلاس سے کوئی بچہ غیر حاضر مارک نہیں کیا گیا۔ نیچے لسٹ سے بچوں پر کلک کریں۔</span>';
+        }
+    }
+
+    function removeStudentFromTray(className, studentName) {
+        const dateKey = getSelectedDateKey();
+        if (className === activeClass) {
+            delete currentAttendance[studentName];
+            syncActiveClassToHistory();
+        } else if (attendanceHistory[dateKey] && attendanceHistory[dateKey][className]) {
+            delete attendanceHistory[dateKey][className][studentName];
+            if (Object.keys(attendanceHistory[dateKey][className]).length === 0) {
+                delete attendanceHistory[dateKey][className];
+            }
+            saveAllData();
+        }
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function applyLogoSettings() {
+        document.documentElement.style.setProperty('--logo-border-width', logoSettings.borderWidth);
+        document.documentElement.style.setProperty('--logo-border-color', logoSettings.borderColor);
+        document.documentElement.style.setProperty('--logo-radius', logoSettings.radius);
+        document.documentElement.style.setProperty('--logo-size', logoSettings.size);
+
+        const hText = document.getElementById('headerLogoText');
+        const hImg = document.getElementById('headerLogoImg');
+        const pText = document.getElementById('posterLogoText');
+        const pImg = document.getElementById('posterLogoImg');
+
+        if (logoSettings.base64) {
+            hText.style.display = 'none';
+            pText.style.display = 'none';
+            hImg.src = logoSettings.base64;
+            pImg.src = logoSettings.base64;
+            hImg.style.display = 'block';
+            pImg.style.display = 'block';
+        } else {
+            hText.style.display = 'block';
+            pText.style.display = 'block';
+            hImg.style.display = 'none';
+            pImg.style.display = 'none';
+        }
+    }
+
+    function toggleStudioDrawer() {
+        document.getElementById('studioDrawer').classList.toggle('open');
+    }
+
+    function handleLogoUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const rawDataUrl = e.target.result;
+            const img = new Image();
+            img.onload = function() {
+                const offCanvas = document.createElement('canvas');
+                const maxDim = 500;
+                let w = img.width || 500;
+                let h = img.height || 500;
+                if (w > maxDim || h > maxDim) {
+                    if (w > h) {
+                        h = Math.round((h * maxDim) / w);
+                        w = maxDim;
+                    } else {
+                        w = Math.round((w * maxDim) / h);
+                        h = maxDim;
+                    }
+                }
+                offCanvas.width = w;
+                offCanvas.height = h;
+                const oCtx = offCanvas.getContext('2d');
+                oCtx.clearRect(0, 0, w, h);
+                oCtx.drawImage(img, 0, 0, w, h);
+
+                logoSettings.base64 = offCanvas.toDataURL('image/png');
+                applyLogoSettings();
+                saveAllData();
+                updateLivePoster();
+                showToast("اسکول کا لوگو کامیابی سے سافٹ ویئر اور پوسٹر میں شامل ہو گیا!");
+            };
+            img.onerror = function() {
+                logoSettings.base64 = rawDataUrl;
+                applyLogoSettings();
+                saveAllData();
+                updateLivePoster();
+            };
+            img.src = rawDataUrl;
+        };
+        reader.readAsDataURL(file);
+        event.target.value = '';
+    }
+
+    function removeLogo() {
+        logoSettings.base64 = '';
+        localStorage.removeItem('taqwa_school_logo');
+        applyLogoSettings();
+        saveAllData();
+        updateLivePoster();
+        showToast("لوگو ہٹا دیا گیا۔");
+    }
+
+    function updateLogoStyle(prop, val) {
+        logoSettings[prop] = val;
+        applyLogoSettings();
+        saveAllData();
+    }
+
+    function adjustAppFont(delta) {
+        currentUiFontSize = Math.min(22, Math.max(12, currentUiFontSize + delta));
+        document.documentElement.style.setProperty('--ui-font-size', currentUiFontSize + 'px');
+        document.getElementById('fontSizeDisplay').innerText = currentUiFontSize + 'px';
+    }
+
+    function adjustPosterFont(scale) {
+        currentPosterScale = parseFloat(scale);
+        document.documentElement.style.setProperty('--poster-font-scale', currentPosterScale);
+    }
+
+    function setTheme(themeClass, btnEl) {
+        document.getElementById('appBody').className = themeClass;
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active-theme'));
+        if (btnEl) btnEl.classList.add('active-theme');
+    }
+
+    function renderSidebar() {
+        const list = document.getElementById('classSidebarList');
+        list.innerHTML = '';
+        const classNames = Object.keys(schoolData);
+        document.getElementById('totalClassesBadge').innerText = classNames.length + ' کلاسز';
+
+        classNames.forEach(cName => {
+            const div = document.createElement('div');
+            div.className = 'class-item' + (cName === activeClass ? ' active' : '');
+            div.onclick = () => selectClass(cName);
+
+            const left = document.createElement('span');
+            left.innerText = cName;
+
+            const right = document.createElement('div');
+            right.style.display = 'flex';
+            right.style.alignItems = 'center';
+            right.style.gap = '5px';
+
+            const classAbsObj = getClassAttendanceForToday(cName);
+            const absCount = Object.keys(classAbsObj).length;
+            if (absCount > 0) {
+                const absBadge = document.createElement('span');
+                absBadge.className = 'class-abs-badge';
+                absBadge.innerText = `${absCount} غیرحاضر`;
+                right.appendChild(absBadge);
+            }
+
+            const count = document.createElement('span');
+            count.className = 'class-count-badge';
+            count.innerText = schoolData[cName].length;
+
+            const del = document.createElement('button');
+            del.innerHTML = '🗑️';
+            del.style.background = 'none';
+            del.style.border = 'none';
+            del.style.cursor = 'pointer';
+            del.onclick = (e) => {
+                e.stopPropagation();
+                deleteClass(cName);
+            };
+
+            right.appendChild(count);
+            right.appendChild(del);
+            div.appendChild(left);
+            div.appendChild(right);
+            list.appendChild(div);
+        });
+    }
+
+    function selectClass(cName) {
+        if (activeClass) {
+            syncActiveClassToHistory();
+        }
+        activeClass = cName;
+        const dateKey = getSelectedDateKey();
+        currentAttendance = (attendanceHistory[dateKey] && attendanceHistory[dateKey][activeClass])
+            ? { ...attendanceHistory[dateKey][activeClass] }
+            : {};
+
+        updateHolidayAlertBanner();
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function onDateChange() {
+        activeClass = activeClass || Object.keys(schoolData)[0] || null;
+        const dateKey = getSelectedDateKey();
+        currentAttendance = (attendanceHistory[dateKey] && attendanceHistory[dateKey][activeClass])
+            ? { ...attendanceHistory[dateKey][activeClass] }
+            : {};
+        updateHolidayAlertBanner();
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function addNewClass() {
+        const inp = document.getElementById('newClassInput');
+        const name = inp.value.trim();
+        if (!name) return;
+        if (!schoolData[name]) {
+            schoolData[name] = [];
+            saveAllData();
+        }
+        inp.value = '';
+        selectClass(name);
+    }
+
+    function deleteClass(cName) {
+        if (confirm(`کیا آپ واقعی کلاس "${cName}" حذف کرنا چاہتے ہیں؟`)) {
+            delete schoolData[cName];
+            saveAllData();
+            activeClass = Object.keys(schoolData)[0] || null;
+            renderSidebar();
+            renderStudents();
+            renderAccumulatedTray();
+            updateLivePoster();
+        }
+    }
+
+    function addStudent() {
+        if (!activeClass) { alert("پہلے کلاس منتخب کریں!"); return; }
+        const inp = document.getElementById('newStudentInput');
+        const name = inp.value.trim();
+        if (!name) return;
+        if (!schoolData[activeClass].includes(name)) {
+            schoolData[activeClass].push(name);
+            saveAllData();
+        }
+        inp.value = '';
+        renderSidebar();
+        renderStudents();
+        updateLivePoster();
+    }
+
+    function deleteStudent(index) {
+        const stuName = schoolData[activeClass][index];
+        if (confirm(`کیا آپ "${stuName}" کا نام لسٹ سے نکالنا چاہتے ہیں؟`)) {
+            delete currentAttendance[stuName];
+            schoolData[activeClass].splice(index, 1);
+            syncActiveClassToHistory();
+            renderSidebar();
+            renderStudents();
+            renderAccumulatedTray();
+            updateLivePoster();
+        }
+    }
+
+    function getMonthlyAbsenceCount(className, studentName) {
+        const selectedDate = getSelectedDateKey();
+        const yearMonth = selectedDate.slice(0, 7);
+        let count = 0;
+
+        for (let d in attendanceHistory) {
+            if (d.startsWith(yearMonth) && d !== selectedDate) {
+                const classRec = attendanceHistory[d][className];
+                if (classRec && (classRec[studentName] === 'absent' || classRec[studentName] === 'leave')) {
+                    count++;
+                }
+            }
+        }
+        const todayClassRec = getClassAttendanceForToday(className);
+        if (todayClassRec[studentName] === 'absent' || todayClassRec[studentName] === 'leave') {
+            count++;
+        }
+        return count;
+    }
+
+    function setStudentStatus(studentName, status) {
+        if (!status || status === 'present') {
+            delete currentAttendance[studentName];
+        } else {
+            currentAttendance[studentName] = status;
+        }
+        syncActiveClassToHistory();
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function toggleStudentQuick(studentName) {
+        if (!currentAttendance[studentName]) {
+            currentAttendance[studentName] = 'absent';
+        } else if (currentAttendance[studentName] === 'absent') {
+            currentAttendance[studentName] = 'leave';
+        } else {
+            delete currentAttendance[studentName];
+        }
+        syncActiveClassToHistory();
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function markAllPresent() {
+        currentAttendance = {};
+        syncActiveClassToHistory();
+        renderSidebar();
+        renderStudents();
+        renderAccumulatedTray();
+        updateLivePoster();
+    }
+
+    function renderStudents() {
+        const container = document.getElementById('studentsContainer');
+        container.innerHTML = '';
+
+        if (!activeClass) {
+            document.getElementById('activeClassHeader').innerText = '📚 کوئی کلاس منتخب نہیں';
+            return;
+        }
+
+        const students = schoolData[activeClass] || [];
+        const absCount = Object.keys(currentAttendance).length;
+        const presCount = Math.max(0, students.length - absCount);
+        document.getElementById('activeClassHeader').innerText = `📚 کلاس: ${activeClass} (کل: ${students.length} | حاضر: ${presCount} | غیرحاضر: ${absCount})`;
+        const query = document.getElementById('searchStudentInput').value.trim();
+
+        students.forEach((stu, idx) => {
+            if (query && !stu.includes(query)) return;
+
+            const status = currentAttendance[stu] || 'present';
+            const row = document.createElement('div');
+            row.className = 'student-row' + (status === 'absent' ? ' is-absent' : status === 'leave' ? ' is-leave' : '');
+
+            const info = document.createElement('div');
+            info.className = 'stu-info';
+            info.onclick = () => toggleStudentQuick(stu);
+
+            const num = document.createElement('span');
+            num.className = 'stu-num';
+            num.innerText = idx + 1;
+
+            const nameSpan = document.createElement('span');
+            nameSpan.style.fontWeight = 'bold';
+            nameSpan.innerText = stu;
+
+            info.appendChild(num);
+            info.appendChild(nameSpan);
+
+            const monthCount = getMonthlyAbsenceCount(activeClass, stu);
+            if (monthCount > 0) {
+                const mBadge = document.createElement('span');
+                mBadge.className = 'monthly-badge';
+                mBadge.innerText = `اس ماہ: ${monthCount}`;
+                info.appendChild(mBadge);
+            }
+
+            const actions = document.createElement('div');
+            actions.className = 'status-btns';
+
+            const btnPresent = document.createElement('button');
+            btnPresent.className = 'status-pill' + (status === 'present' ? ' active-present' : '');
+            btnPresent.innerText = 'حاضر';
+            btnPresent.onclick = () => setStudentStatus(stu, 'present');
+
+            const btnAbsent = document.createElement('button');
+            btnAbsent.className = 'status-pill' + (status === 'absent' ? ' active-absent' : '');
+            btnAbsent.innerText = 'غیر حاضر';
+            btnAbsent.onclick = () => setStudentStatus(stu, 'absent');
+
+            const btnLeave = document.createElement('button');
+            btnLeave.className = 'status-pill' + (status === 'leave' ? ' active-leave' : '');
+            btnLeave.innerText = 'رخصت';
+            btnLeave.onclick = () => setStudentStatus(stu, 'leave');
+
+            const btnDel = document.createElement('button');
+            btnDel.className = 'status-pill';
+            btnDel.style.color = '#dc2626';
+            btnDel.innerText = '✕';
+            btnDel.onclick = () => deleteStudent(idx);
+
+            actions.appendChild(btnPresent);
+            actions.appendChild(btnAbsent);
+            actions.appendChild(btnLeave);
+            actions.appendChild(btnDel);
+
+            row.appendChild(info);
+            row.appendChild(actions);
+            container.appendChild(row);
+        });
+    }
+
+    function getFormattedUrduDate() {
+        const val = getSelectedDateKey();
+        const d = val ? new Date(val + 'T00:00:00') : new Date();
+        return d.toLocaleDateString('ur-PK', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function getSchoolWideSummary() {
+        let totalAbsent = 0;
+        let classesWithAbsences = [];
+
+        for (let cName in schoolData) {
+            const stuList = schoolData[cName] || [];
+            const attObj = getClassAttendanceForToday(cName);
+            const entries = Object.entries(attObj);
+            totalAbsent += entries.length;
+
+            if (entries.length > 0) {
+                classesWithAbsences.push({
+                    className: cName,
+                    total: stuList.length,
+                    present: Math.max(0, stuList.length - entries.length),
+                    entries: entries
+                });
+            }
+        }
+        return { totalAbsent, classesWithAbsences };
+    }
+
+    function updateLivePoster() {
+        const dynamicContainer = document.getElementById('posterDynamicContent');
+        const headingEl = document.getElementById('posterStatusHeading');
+        const showMonthly = document.getElementById('showMonthlyCountToggle').checked;
+        const showClassStrength = document.getElementById('showClassStrengthOnPoster').checked;
+
+        document.getElementById('posterDateText').innerText = '📅 ' + getFormattedUrduDate();
+        document.getElementById('posterFooterText').innerText = document.getElementById('customFooterNote').value;
+        dynamicContainer.innerHTML = '';
+
+        if (reportMode === 'single') {
+            const students = activeClass ? (schoolData[activeClass] || []) : [];
+            const total = students.length;
+            const absentEntries = Object.entries(currentAttendance);
+            const absentCount = absentEntries.length;
+            const presentCount = Math.max(0, total - absentCount);
+
+            document.getElementById('posterClassText').innerText = `📚 کلاس: ${activeClass || '-'}` + (showClassStrength ? ` (کل: ${total} | حاضر: ${presentCount} | غیرحاضر: ${absentCount})` : '');
+
+            if (absentCount === 0) {
+                headingEl.style.background = '#dcfce7';
+                headingEl.style.color = '#166534';
+                headingEl.style.borderColor = '#4ade80';
+                headingEl.innerText = `✨ ماشاءاللہ! آج کلاس ${activeClass} کے تمام طلباء حاضر ہیں`;
+                dynamicContainer.innerHTML = '<div style="text-align:center; padding:25px; color:#15803d; font-weight:bold; font-size:18px;">الحمدللہ کلاس کی حاضری مکمل ہے! 🌟</div>';
+            } else {
+                headingEl.style.background = '#fee2e2';
+                headingEl.style.color = '#991b1b';
+                headingEl.style.borderColor = '#f87171';
+                headingEl.innerText = `📢 کلاس ${activeClass} — آج غیر حاضر طلباء (${absentCount})`;
+
+                const grid = document.createElement('div');
+                grid.className = 'poster-absent-grid';
+                grid.style.gridTemplateColumns = absentCount === 1 ? '1fr' : '1fr 1fr';
+
+                absentEntries.forEach(([stuName, stType], idx) => {
+                    const chip = document.createElement('div');
+                    chip.className = 'poster-student-chip' + (stType === 'leave' ? ' chip-leave' : '');
+                    const mCount = getMonthlyAbsenceCount(activeClass, stuName);
+                    const statusLabel = stType === 'leave' ? 'رخصت' : 'غیر حاضر';
+                    const badgeColor = stType === 'leave' ? '#b45309' : '#b91c1c';
+
+                    chip.innerHTML = `
+                        <span>${idx + 1}. ${stuName}</span>
+                        <span style="font-size:11px; color:${badgeColor}; background:rgba(0,0,0,0.05); padding:2px 6px; border-radius:4px;">
+                            ${statusLabel}${showMonthly ? ` (${mCount})` : ''}
+                        </span>
+                    `;
+                    grid.appendChild(chip);
+                });
+                dynamicContainer.appendChild(grid);
+            }
+        } else {
+            const summary = getSchoolWideSummary();
+            document.getElementById('posterClassText').innerText = '📚 یومیہ کلاس وائز غیر حاضری رپورٹ';
+
+            if (summary.totalAbsent === 0) {
+                headingEl.style.background = '#dcfce7';
+                headingEl.style.color = '#166534';
+                headingEl.style.borderColor = '#4ade80';
+                headingEl.innerText = '✨ ماشاءاللہ! آج کسی بھی کلاس میں کوئی طالب علم غیر حاضر نہیں';
+                dynamicContainer.innerHTML = '<div style="text-align:center; padding:25px; color:#15803d; font-weight:bold; font-size:18px;">الحمدللہ! آج تمام کلاسز میں حاضری مکمل ہے 🌟</div>';
+            } else {
+                headingEl.style.background = '#fee2e2';
+                headingEl.style.color = '#991b1b';
+                headingEl.style.borderColor = '#f87171';
+                headingEl.innerText = `📢 آج چھٹی پر موجود طلباء کی کلاس وائز تفصیل (کل غیر حاضر: ${summary.totalAbsent})`;
+
+                summary.classesWithAbsences.forEach(cGroup => {
+                    const groupBox = document.createElement('div');
+                    groupBox.className = 'poster-class-group';
+
+                    const groupHead = document.createElement('div');
+                    groupHead.className = 'poster-class-group-header';
+                    groupHead.innerHTML = `
+                        <span>📚 کلاس: ${cGroup.className}</span>
+                        <span style="font-size:12px; color:#fef08a;">
+                            ${showClassStrength ? `کلاس کے کل طلباء: ${cGroup.total} | حاضر: ${cGroup.present} | غیر حاضر: ${cGroup.entries.length}` : `غیر حاضر: ${cGroup.entries.length}`}
+                        </span>
+                    `;
+
+                    const grid = document.createElement('div');
+                    grid.className = 'poster-absent-grid';
+                    grid.style.gridTemplateColumns = cGroup.entries.length === 1 ? '1fr' : '1fr 1fr';
+
+                    cGroup.entries.forEach(([stuName, stType], idx) => {
+                        const chip = document.createElement('div');
+                        chip.className = 'poster-student-chip' + (stType === 'leave' ? ' chip-leave' : '');
+                        const mCount = getMonthlyAbsenceCount(cGroup.className, stuName);
+                        const statusLabel = stType === 'leave' ? 'رخصت' : 'غیر حاضر';
+                        const badgeColor = stType === 'leave' ? '#b45309' : '#b91c1c';
+
+                        chip.innerHTML = `
+                            <span>${idx + 1}. ${stuName}</span>
+                            <span style="font-size:11px; color:${badgeColor}; background:rgba(0,0,0,0.05); padding:2px 6px; border-radius:4px;">
+                                ${statusLabel}${showMonthly ? ` (${mCount})` : ''}
+                            </span>
+                        `;
+                        grid.appendChild(chip);
+                    });
+
+                    groupBox.appendChild(groupHead);
+                    groupBox.appendChild(grid);
+                    dynamicContainer.appendChild(groupBox);
+                });
+            }
+        }
+    }
+
+    function drawRoundBox(ctx, x, y, w, h, r, fill, stroke, lineWidth = 2) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lineWidth; ctx.stroke(); }
+    }
+
+    async function renderHighResCanvas(overrideMode = null, overrideClass = null) {
+        const modeToUse = overrideMode || reportMode;
+        const classToUse = overrideClass || activeClass;
+
+        const scaleFactor = parseInt(document.getElementById('imageQualitySelect').value) || 3;
+        const canvas = document.getElementById('hdPosterCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const styles = getComputedStyle(document.body);
+        const primary = styles.getPropertyValue('--primary').trim() || '#0b3d2c';
+        const primaryDark = styles.getPropertyValue('--primary-dark').trim() || '#051f16';
+        const accent = styles.getPropertyValue('--accent').trim() || '#d4af37';
+        const secBg = styles.getPropertyValue('--secondary-bg').trim() || '#e6f4ea';
+
+        const showMonthly = document.getElementById('showMonthlyCountToggle').checked;
+        const showClassStrength = document.getElementById('showClassStrengthOnPoster').checked;
+
+        const logicalWidth = 1080;
+        let logicalHeight = 680;
+
+        let summaryData = null;
+        let singleEntries = [];
+        let singleTotal = 0;
+        let singlePresent = 0;
+
+        if (modeToUse === 'single') {
+            const stuList = classToUse ? (schoolData[classToUse] || []) : [];
+            singleTotal = stuList.length;
+            const attObj = getClassAttendanceForToday(classToUse);
+            singleEntries = Object.entries(attObj);
+            singlePresent = Math.max(0, singleTotal - singleEntries.length);
+            const rows = Math.max(1, Math.ceil(singleEntries.length / 2));
+            logicalHeight = Math.max(640, 420 + rows * 74 + 90);
+        } else {
+            summaryData = getSchoolWideSummary();
+            let contentH = 0;
+            if (summaryData.totalAbsent === 0) {
+                contentH = 150;
+            } else {
+                summaryData.classesWithAbsences.forEach(cg => {
+                    const r = Math.ceil(cg.entries.length / 2);
+                    contentH += 58 + (r * 70) + 22;
+                });
+            }
+            logicalHeight = Math.max(660, 395 + contentH + 90);
+        }
+
+        canvas.width = logicalWidth * scaleFactor;
+        canvas.height = logicalHeight * scaleFactor;
+        ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, logicalWidth, logicalHeight);
+
+        const grad = ctx.createLinearGradient(0, 0, logicalWidth, 215);
+        grad.addColorStop(0, primaryDark);
+        grad.addColorStop(1, primary);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, logicalWidth, 215);
+
+        ctx.fillStyle = accent;
+        ctx.fillRect(0, 210, logicalWidth, 8);
+
+        if (logoSettings.base64) {
+            await new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    const lSize = 135;
+                    const lx = logicalWidth - 175;
+                    const ly = 38;
+                    ctx.save();
+                    ctx.beginPath();
+                    if (logoSettings.radius === '50%') {
+                        ctx.arc(lx + lSize/2, ly + lSize/2, lSize/2, 0, Math.PI * 2);
+                    } else {
+                        ctx.rect(lx, ly, lSize, lSize);
+                    }
+                    ctx.closePath();
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fill();
+                    ctx.clip();
+                    ctx.drawImage(img, lx, ly, lSize, lSize);
+                    ctx.restore();
+
+                    const bWidth = parseInt(logoSettings.borderWidth) || 4;
+                    if (bWidth > 0) {
+                        ctx.save();
+                        ctx.beginPath();
+                        if (logoSettings.radius === '50%') {
+                            ctx.arc(lx + lSize/2, ly + lSize/2, lSize/2, 0, Math.PI * 2);
+                        } else {
+                            ctx.rect(lx, ly, lSize, lSize);
+                        }
+                        ctx.lineWidth = bWidth * 1.6;
+                        ctx.strokeStyle = logoSettings.borderColor || accent;
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                    resolve();
+                };
+                img.onerror = resolve;
+                img.src = logoSettings.base64;
+            });
+        }
+
+        const centerX = logicalWidth / 2 - (logoSettings.base64 ? 50 : 0);
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = "bold 44px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+        ctx.fillText('تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)', centerX, 95);
+
+        ctx.fillStyle = '#fef08a';
+        ctx.font = "bold 25px 'Segoe UI', Tahoma";
+        ctx.fillText('📞 WhatsApp & Call: 03226389984 | 03466389984', centerX, 145);
+
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = "bold 22px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+        ctx.fillText('ڈیجیٹل یومیہ کلاس وائز غیر حاضری رپورٹ', centerX, 188);
+
+        drawRoundBox(ctx, 28, 232, logicalWidth - 56, 58, 10, secBg, primary, 2.5);
+        ctx.fillStyle = primaryDark;
+        ctx.font = "bold 25px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+        ctx.textAlign = 'right';
+        if (modeToUse === 'single') {
+            const metaRight = `📚 کلاس: ${classToUse || '-'}` + (showClassStrength ? `  (کلاس کے کل طلباء: ${singleTotal} | حاضر: ${singlePresent} | غیر حاضر: ${singleEntries.length})` : '');
+            ctx.fillText(metaRight, logicalWidth - 48, 270);
+        } else {
+            ctx.fillText('📚 یومیہ کلاس وائز غیر حاضری رپورٹ', logicalWidth - 48, 270);
+        }
+        ctx.textAlign = 'left';
+        ctx.fillText('📅 ' + getFormattedUrduDate(), 48, 270);
+
+        const aCount = modeToUse === 'single' ? singleEntries.length : summaryData.totalAbsent;
+        drawRoundBox(
+            ctx, 28, 304, logicalWidth - 56, 48, 8,
+            aCount === 0 ? '#dcfce7' : '#fee2e2',
+            aCount === 0 ? '#22c55e' : '#ef4444', 2
+        );
+        ctx.fillStyle = aCount === 0 ? '#166534' : '#991b1b';
+        ctx.font = "bold 26px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+        ctx.textAlign = 'center';
+        ctx.fillText(
+            aCount === 0
+                ? '✨ ماشاءاللہ! آج تمام طلباء حاضر ہیں'
+                : (modeToUse === 'single'
+                    ? `📢 کلاس ${classToUse} — آج غیر حاضر اور رخصت پر موجود طلباء (${aCount})`
+                    : `📢 آج چھٹی پر موجود طلباء کی کلاس وائز فہرست (کل غیر حاضر: ${aCount})`),
+            logicalWidth / 2, 337
+        );
+
+        let curY = 368;
+        const colW = (logicalWidth - 76) / 2;
+        const stuFontSize = Math.round(25 * currentPosterScale);
+
+        if (modeToUse === 'single') {
+            if (singleEntries.length === 0) {
+                drawRoundBox(ctx, 60, curY + 10, logicalWidth - 120, 110, 12, '#f0fdf4', '#22c55e', 2.5);
+                ctx.fillStyle = '#15803d';
+                ctx.font = "bold 32px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                ctx.fillText('الحمدللہ! آج اس کلاس کی حاضری مکمل ہے۔ 🌟', logicalWidth / 2, curY + 75);
+            } else {
+                singleEntries.forEach(([stuName, stType], idx) => {
+                    const isRightCol = idx % 2 === 0;
+                    const rowIdx = Math.floor(idx / 2);
+                    const cx = isRightCol ? (logicalWidth - 28 - colW) : 28;
+                    const cy = curY + rowIdx * 72;
+
+                    drawRoundBox(
+                        ctx, cx, cy, colW, 60, 8,
+                        stType === 'leave' ? '#fffbeb' : '#fff5f5',
+                        stType === 'leave' ? '#d97706' : '#dc2626', 2
+                    );
+
+                    ctx.fillStyle = stType === 'leave' ? '#d97706' : '#dc2626';
+                    ctx.fillRect(cx + colW - 10, cy + 2, 8, 56);
+
+                    ctx.fillStyle = '#0f172a';
+                    ctx.textAlign = 'right';
+                    ctx.font = `bold ${stuFontSize}px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma`;
+                    ctx.fillText(`${idx + 1}. ${stuName}`, cx + colW - 22, cy + 39);
+
+                    const mCount = getMonthlyAbsenceCount(classToUse, stuName);
+                    const badgeTxt = (stType === 'leave' ? 'رخصت' : 'غیر حاضر') + (showMonthly ? ` (اس ماہ: ${mCount})` : '');
+                    ctx.fillStyle = stType === 'leave' ? '#b45309' : '#b91c1c';
+                    ctx.textAlign = 'left';
+                    ctx.font = "bold 19px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                    ctx.fillText(badgeTxt, cx + 16, cy + 39);
+                });
+            }
+        } else {
+            if (summaryData.totalAbsent === 0) {
+                drawRoundBox(ctx, 60, curY + 10, logicalWidth - 120, 110, 12, '#f0fdf4', '#22c55e', 2.5);
+                ctx.fillStyle = '#15803d';
+                ctx.font = "bold 32px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                ctx.fillText('الحمدللہ! آج تمام کلاسز میں حاضری مکمل ہے۔ 🌟', logicalWidth / 2, curY + 75);
+            } else {
+                summaryData.classesWithAbsences.forEach(cg => {
+                    drawRoundBox(ctx, 28, curY, logicalWidth - 56, 46, 8, primary, accent, 2);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "bold 24px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                    ctx.textAlign = 'right';
+                    ctx.fillText(`📚 کلاس: ${cg.className}`, logicalWidth - 46, curY + 31);
+
+                    ctx.fillStyle = '#fef08a';
+                    ctx.font = "bold 20px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                    ctx.textAlign = 'left';
+                    const classMetaTxt = showClassStrength
+                        ? `کلاس کے کل طلباء: ${cg.total}  |  حاضر: ${cg.present}  |  غیر حاضر: ${cg.entries.length}`
+                        : `غیر حاضر طلباء: ${cg.entries.length}`;
+                    ctx.fillText(classMetaTxt, 46, curY + 31);
+
+                    curY += 56;
+
+                    cg.entries.forEach(([stuName, stType], idx) => {
+                        const isRightCol = idx % 2 === 0;
+                        const rowIdx = Math.floor(idx / 2);
+                        const cx = isRightCol ? (logicalWidth - 28 - colW) : 28;
+                        const cy = curY + rowIdx * 68;
+
+                        drawRoundBox(
+                            ctx, cx, cy, colW, 56, 8,
+                            stType === 'leave' ? '#fffbeb' : '#fff5f5',
+                            stType === 'leave' ? '#d97706' : '#dc2626', 2
+                        );
+
+                        ctx.fillStyle = stType === 'leave' ? '#d97706' : '#dc2626';
+                        ctx.fillRect(cx + colW - 10, cy + 2, 8, 52);
+
+                        ctx.fillStyle = '#0f172a';
+                        ctx.textAlign = 'right';
+                        ctx.font = `bold ${stuFontSize}px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma`;
+                        ctx.fillText(`${idx + 1}. ${stuName}`, cx + colW - 22, cy + 37);
+
+                        const mCount = getMonthlyAbsenceCount(cg.className, stuName);
+                        const badgeTxt = (stType === 'leave' ? 'رخصت' : 'غیر حاضر') + (showMonthly ? ` (اس ماہ: ${mCount})` : '');
+                        ctx.fillStyle = stType === 'leave' ? '#b45309' : '#b91c1c';
+                        ctx.textAlign = 'left';
+                        ctx.font = "bold 18px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+                        ctx.fillText(badgeTxt, cx + 16, cy + 37);
+                    });
+
+                    const rowsUsed = Math.ceil(cg.entries.length / 2);
+                    curY += rowsUsed * 68 + 18;
+                });
+            }
+        }
+
+        ctx.strokeStyle = primary;
+        ctx.lineWidth = 10;
+        ctx.strokeRect(5, 5, logicalWidth - 10, logicalHeight - 10);
+
+        ctx.fillStyle = primaryDark;
+        ctx.fillRect(10, logicalHeight - 66, logicalWidth - 20, 56);
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.font = "bold 22px 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma";
+        ctx.fillText(document.getElementById('customFooterNote').value, logicalWidth / 2, logicalHeight - 30);
+
+        return canvas;
+    }
+
+    async function downloadPosterPNG() {
+        syncActiveClassToHistory();
+        const canvas = await renderHighResCanvas();
+        const link = document.createElement('a');
+        const dateStr = getSelectedDateKey();
+        const fileLabel = reportMode === 'single' ? `Class_${activeClass}` : `ClassWise_Combined`;
+        link.download = `Taqwa_Attendance_${fileLabel}_${dateStr}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+        showToast("الٹرا ایچ ڈی (4K) پوسٹر تصویر کامیابی سے ڈاؤن لوڈ ہو گئی!");
+    }
+
+    async function downloadAllClassesSeparatePNGs() {
+        syncActiveClassToHistory();
+        const summary = getSchoolWideSummary();
+        if (summary.classesWithAbsences.length === 0) {
+            alert("اس تاریخ کو کسی بھی کلاس میں کوئی طالب علم غیر حاضر مارک نہیں کیا گیا۔");
+            return;
+        }
+        const dateStr = getSelectedDateKey();
+        for (let i = 0; i < summary.classesWithAbsences.length; i++) {
+            const cName = summary.classesWithAbsences[i].className;
+            const canvas = await renderHighResCanvas('single', cName);
+            const link = document.createElement('a');
+            link.download = `Taqwa_${cName}_${dateStr}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+            await new Promise(r => setTimeout(r, 350));
+        }
+        showToast(`${summary.classesWithAbsences.length} کلاسز کے الگ الگ ایچ ڈی کارڈز ڈاؤن لوڈ ہو گئے!`);
+    }
+
+    async function copyPosterImageToClipboard() {
+        syncActiveClassToHistory();
+        try {
+            const canvas = await renderHighResCanvas();
+            canvas.toBlob(async (blob) => {
+                try {
+                    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                    showToast("الٹرا ایچ ڈی تصویر کاپی ہو گئی! اب واٹس ایپ میں جا کر سیدھا Ctrl+V دبائیں۔");
+                } catch (err) {
+                    alert("آپ کے براؤزر میں ڈائریکٹ امیج کاپی کی اجازت نہیں، براہ کرم ڈاؤن لوڈ بٹن استعمال کریں۔");
+                }
+            }, 'image/png');
+        } catch (e) {
+            alert("تصویر کاپی کرنے میں مسئلہ پیش آیا۔");
+        }
+    }
+
+    function copyWhatsAppText() {
+        syncActiveClassToHistory();
+        const showMonthly = document.getElementById('showMonthlyCountToggle').checked;
+        const showClassStrength = document.getElementById('showClassStrengthOnPoster').checked;
+
+        let msg = `🏫 *تقویٰ اسلامک سکول ٹھٹھہ لاہوے (شرقپور)* 🏫\n`;
+        msg += `📞 *رابطہ:* 03226389984 | 03466389984\n`;
+        msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+        msg += `📅 *مورخہ:* ${getFormattedUrduDate()}\n`;
+
+        if (reportMode === 'single') {
+            const absentEntries = Object.entries(currentAttendance);
+            const total = (schoolData[activeClass] || []).length;
+            const present = Math.max(0, total - absentEntries.length);
+
+            msg += `📚 *کلاس:* ${activeClass}\n`;
+            if (showClassStrength) {
+                msg += `📊 *کلاس کے کل طلباء:* ${total} | *حاضر:* ${present} | *غیر حاضر:* ${absentEntries.length}\n`;
+            }
+            msg += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+            if (absentEntries.length > 0) {
+                msg += `📢 *آج غیر حاضر / رخصت پر موجود طلباء:*\n\n`;
+                absentEntries.forEach(([name, st], i) => {
+                    const label = st === 'leave' ? '🟡 (رخصت)' : '🔴 (غیر حاضر)';
+                    const mCount = getMonthlyAbsenceCount(activeClass, name);
+                    msg += `${i + 1}. *${name}* ${label}${showMonthly ? ` — [اس ماہ: ${mCount}]` : ''}\n`;
+                });
+            } else {
+                msg += `✨ *ماشاءاللہ! آج اس کلاس کے تمام طلباء حاضر ہیں۔*\n`;
+            }
+        } else {
+            const summary = getSchoolWideSummary();
+            msg += `📚 *یومیہ کلاس وائز غیر حاضری رپورٹ*\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+            if (summary.totalAbsent === 0) {
+                msg += `✨ *ماشاءاللہ! آج تمام کلاسز میں حاضری مکمل ہے۔*\n`;
+            } else {
+                summary.classesWithAbsences.forEach(cg => {
+                    const strengthTxt = showClassStrength ? ` (کل: ${cg.total} | حاضر: ${cg.present} | غیرحاضر: ${cg.entries.length})` : ` (غیرحاضر: ${cg.entries.length})`;
+                    msg += `📚 *کلاس ${cg.className}*${strengthTxt}:\n`;
+                    cg.entries.forEach(([name, st], i) => {
+                        const label = st === 'leave' ? '🟡 رخصت' : '🔴 غیر حاضر';
+                        const mCount = getMonthlyAbsenceCount(cg.className, name);
+                        msg += `   ${i + 1}. *${name}* (${label}${showMonthly ? ` - اس ماہ: ${mCount}` : ''})\n`;
+                    });
+                    msg += `\n`;
+                });
+            }
+        }
+
+        msg += `⚠️ *${document.getElementById('customFooterNote').value}*\n`;
+        msg += `*منجانب: انتظامیہ تقویٰ اسلامک سکول*`;
+
+        navigator.clipboard.writeText(msg).then(() => {
+            showToast("واٹس ایپ میسج کاپی ہو گیا! اب واٹس ایپ میں پیسٹ کر دیں۔");
+        });
+    }
+
+    function openBulkModal() {
+        const sel = document.getElementById('bulkTargetClass');
+        sel.innerHTML = '';
+        Object.keys(schoolData).forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.innerText = c;
+            if (c === activeClass) opt.selected = true;
+            sel.appendChild(opt);
+        });
+        document.getElementById('bulkModal').classList.add('active');
+    }
+
+    function closeBulkModal() {
+        document.getElementById('bulkModal').classList.remove('active');
+    }
+
+    function processBulkPaste() {
+        const targetClass = document.getElementById('bulkTargetClass').value;
+        const raw = document.getElementById('bulkNamesTextarea').value;
+        if (!raw.trim()) return;
+
+        const lines = raw.split(/\r?\n/);
+        let added = 0;
+
+        lines.forEach(line => {
+            let clean = line.trim().replace(/"/g, '');
+            if (!clean) return;
+            if (!schoolData[targetClass]) schoolData[targetClass] = [];
+            if (!schoolData[targetClass].includes(clean)) {
+                schoolData[targetClass].push(clean);
+                added++;
+            }
+        });
+
+        saveAllData();
+        document.getElementById('bulkNamesTextarea').value = '';
+        closeBulkModal();
+        selectClass(targetClass);
+        showToast(`${added} نئے طلباء کے نام کامیابی سے شامل کر دیے گئے!`);
+    }
+
+    function exportCSV() {
+        let csv = "\uFEFFClass,StudentName\r\n";
+        for (let c in schoolData) {
+            schoolData[c].forEach(stu => {
+                csv += `"${c}","${stu}"\r\n`;
+            });
+        }
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Taqwa_School_Students.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function importCSV(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const text = e.target.result.replace(/^\uFEFF/, '');
+            const lines = text.split(/\r?\n/);
+            let addedCount = 0;
+            for (let i = 0; i < lines.length; i++) {
+                let row = lines[i].split(',');
+                if (row.length >= 2) {
+                    let cName = row[0].replace(/"/g, '').trim();
+                    let sName = row[1].replace(/"/g, '').trim();
+                    if (cName && sName && cName.toLowerCase() !== 'class') {
+                        if (!schoolData[cName]) schoolData[cName] = [];
+                        if (!schoolData[cName].includes(sName)) {
+                            schoolData[cName].push(sName);
+                            addedCount++;
+                        }
+                    }
+                }
+            }
+            saveAllData();
+            activeClass = Object.keys(schoolData)[0];
+            selectClass(activeClass);
+            showToast(`فائل سے ڈیٹا موجودہ لسٹ کے ساتھ جمع کر دیا گیا (${addedCount} نئے نام شامل ہوئے)!`);
+        };
+        reader.readAsText(file, 'UTF-8');
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('actionToast');
+        t.innerText = msg;
+        t.style.display = 'block';
+        setTimeout(() => { t.style.display = 'none'; }, 3800);
+    }
+
+    applyLogoSettings();
+    populateClassDropdowns();
+    if (activeClass) selectClass(activeClass);
+    else renderSidebar();
+</script>
+
+</body>
+</html>
